@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ניב סימון</title>
+    <meta name="description" content="ניב סימון - עורך דין, נוטריון, כלכלן, יועץ עסקי ומרצה.">
+    <meta name="theme-color" content="#000000">
+    <meta property="og:title" content="ניב סימון - עו״ד, נוטריון, יועץ עסקי">
+    <meta property="og:description" content="עורך דין ונוטריון. מלווה עסקים ומשפחות 18 שנה. בונה אפליקציות, מארח פודקאסט, יוצר תוכן.">
+    <meta property="og:type" content="website">
+
+    <!-- Structured Data - Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "ניב סימון",
+        "alternateName": "Niv Simon",
+        "jobTitle": ["עורך דין", "נוטריון", "כלכלן", "יועץ עסקי", "מרצה"],
+        "description": "עורך דין ונוטריון. מלווה עסקים ומשפחות 18 שנה.",
+        "url": "https://www.simon-law.co.il",
+        "telephone": "+972-3-9434610",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "רמת השרון",
+            "addressCountry": "IL"
+        },
+        "sameAs": [
+            "https://www.instagram.com/nivsimon.space/",
+            "https://www.tiktok.com/@nivsimon_goodbye",
+            "https://open.spotify.com/show/2T79RNlZ6Ujj3RdE3Av3A6"
+        ],
+        "worksFor": {
+            "@type": "LegalService",
+            "name": "משרד עו״ד ניב סימון",
+            "url": "https://www.simon-law.co.il"
+        }
+    }
+    </script>
+    <style>
+        @font-face {
+            font-family: 'Alef';
+            src: url('fonts/Alef-regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Alef';
+            src: url('fonts/Alef-bold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #888888;
+            --dark-gray: #1a1a1a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Alef', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        /* Accessibility - Skip to Content */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--white);
+            color: var(--black);
+            padding: 12px 24px;
+            font-weight: 700;
+            z-index: 9999;
+            border-radius: 0 0 8px 8px;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Enhanced Focus States - Accessibility */
+        a:focus,
+        button:focus {
+            outline: 2px solid var(--white);
+            outline-offset: 3px;
+        }
+
+        .role:focus-within,
+        .link-item:focus-within {
+            background: var(--dark-gray);
+            outline: 2px solid rgba(255, 255, 255, 0.3);
+            outline-offset: -2px;
+        }
+
+        /* Reduced Motion - Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            border-bottom: 1px solid var(--dark-gray);
+        }
+
+        .hero-content {
+            padding: 80px 64px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 0.9;
+            margin-bottom: 32px;
+            text-transform: uppercase;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 48px;
+        }
+
+        .hero-desc {
+            font-size: 1.35rem;
+            line-height: 1.6;
+            color: var(--gray);
+            max-width: 500px;
+        }
+
+        .hero-desc strong {
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .hero-image {
+            height: 100%;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            filter: grayscale(100%);
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-bottom: 1px solid var(--dark-gray);
+        }
+
+        .stat {
+            padding: 48px 24px;
+            text-align: center;
+            border-left: 1px solid var(--dark-gray);
+        }
+
+        .stat:last-child {
+            border-left: none;
+        }
+
+        .stat-number {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-top: 8px;
+        }
+
+        /* Section */
+        .section {
+            padding: 120px 0;
+            border-bottom: 1px solid var(--dark-gray);
+        }
+
+        .section-header {
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
+
+        /* Roles Grid */
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1px;
+            background: var(--dark-gray);
+        }
+
+        .role {
+            background: var(--black);
+            padding: 48px 32px;
+            transition: background 0.3s;
+        }
+
+        .role:hover {
+            background: var(--dark-gray);
+        }
+
+        .role h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .role p {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .role-link {
+            display: inline-block;
+            margin-top: 24px;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-bottom: 1px solid var(--white);
+            padding-bottom: 4px;
+            transition: opacity 0.3s;
+        }
+
+        .role-link:hover {
+            opacity: 0.6;
+        }
+
+        /* Podcast */
+        .podcast-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .podcast-info h3 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .podcast-info p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .podcast-stats {
+            display: flex;
+            gap: 48px;
+            margin-bottom: 32px;
+        }
+
+        .podcast-stat span {
+            display: block;
+        }
+
+        .podcast-stat span:first-child {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .podcast-stat span:last-child {
+            font-size: 0.75rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .episodes {
+            margin-top: 48px;
+        }
+
+        .episodes h4 {
+            font-size: 0.75rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 24px;
+        }
+
+        .episode {
+            padding: 20px 0;
+            border-top: 1px solid var(--dark-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .episode-title {
+            font-weight: 700;
+        }
+
+        .episode-meta {
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        /* Topics */
+        .topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .topic {
+            padding: 12px 24px;
+            border: 1px solid var(--white);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s;
+        }
+
+        .topic:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* TikTok Section */
+        .tiktok-content h3 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .tiktok-content > p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 48px;
+        }
+
+        .tiktok-stats {
+            display: flex;
+            gap: 64px;
+            margin-bottom: 48px;
+        }
+
+        .tiktok-stat span:first-child {
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .tiktok-stat span:last-child {
+            font-size: 0.75rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .playlists {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .playlist {
+            background: var(--dark-gray);
+            padding: 24px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .playlist:hover {
+            transform: translateY(-4px);
+        }
+
+        .playlist-title {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .playlist-count {
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        /* Links */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1px;
+            background: var(--dark-gray);
+        }
+
+        .link-item {
+            background: var(--black);
+            padding: 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: background 0.3s;
+        }
+
+        .link-item:hover {
+            background: var(--dark-gray);
+        }
+
+        .link-icon {
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .link-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--white);
+        }
+
+        .link-text {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .link-sub {
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 2px;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: clamp(2rem, 6vw, 5rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 48px;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--white);
+            color: var(--black);
+            padding: 20px 48px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(255,255,255,0.1);
+        }
+
+        .whatsapp-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--black);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 48px 0;
+            text-align: center;
+            border-top: 1px solid var(--dark-gray);
+        }
+
+        .footer p {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+
+
+        /* Navigation Wheel */
+        .nav-wheel {
+            position: fixed;
+            bottom: 10%;
+            right: -80px;
+            width: 200px;
+            height: 200px;
+            z-index: 1000;
+        }
+
+        .wheel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .wheel-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .wheel-labels {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .wheel-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.3);
+            white-space: nowrap;
+            cursor: pointer;
+            padding: 5px 8px;
+            border-radius: 3px;
+            transition: all 0.4s ease;
+            pointer-events: auto;
+            opacity: 0;
+        }
+
+        .wheel-label.visible {
+            opacity: 1;
+        }
+
+        .wheel-label.active {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.15);
+            font-size: 0.7rem;
+        }
+
+        .wheel-label.adjacent {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .wheel-label:hover {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .wheel-photo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            background: var(--black);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
+            z-index: 10;
+        }
+
+        .wheel-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+
+        .nav-wheel:hover .wheel-photo img {
+            filter: grayscale(50%);
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: 50%;
+            left: 8px;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            border-left: 6px solid var(--white);
+            z-index: 15;
+        }
+
+        /* Mobile */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .hero-content {
+                padding: 80px 24px;
+                order: 2;
+            }
+
+            .hero-image {
+                min-height: 60vh;
+                order: 1;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat {
+                border-left: none;
+                border-bottom: 1px solid var(--dark-gray);
+                padding: 32px 24px;
+            }
+
+            .stat:last-child {
+                border-bottom: none;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .podcast-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .podcast-stats, .tiktok-stats {
+                gap: 32px;
+            }
+
+            .tiktok-stat span:first-child {
+                font-size: 2rem;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Mobile wheel adjustments */
+            .nav-wheel {
+                bottom: 8%;
+                right: -65px;
+                width: 170px;
+                height: 170px;
+            }
+
+            .wheel-photo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .wheel-label {
+                font-size: 0.6rem;
+                padding: 4px 6px;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+            .nav-wheel {
+                bottom: 5%;
+                right: -55px;
+                width: 150px;
+                height: 150px;
+            }
+
+            .wheel-photo {
+                width: 35px;
+                height: 35px;
+            }
+
+            .wheel-label {
+                font-size: 0.55rem;
+                padding: 3px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Skip Navigation - Accessibility -->
+    <a href="#hero" class="skip-link">דלג לתוכן הראשי</a>
+
+    <!-- Hero -->
+    <section class="hero" data-section="hero" id="hero" role="main">
+        <div class="hero-content">
+            <h1>ניב סימון</h1>
+            <p class="hero-subtitle">תל אביב · ציריך</p>
+            <p class="hero-desc">
+                <strong>עורך דין ונוטריון.</strong><br>
+                מלווה עסקים ומשפחות 18 שנה.
+                <br><br>
+                בונה אפליקציות.<br>
+                מארח פודקאסט.<br>
+                יוצר תוכן.
+            </p>
+        </div>
+        <div class="hero-image">
+            <img src="https://static.wixstatic.com/media/415d0e_33ceb576e08e4525909aea9cde01157e~mv2.jpg/v1/fill/w_600,h_900,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_20201026_143528_edited.jpg" alt="ניב סימון">
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-number">31K+</div>
+            <div class="stat-label">עוקבים</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">109+</div>
+            <div class="stat-label">פרקים</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">363K</div>
+            <div class="stat-label">לייקים</div>
+        </div>
+    </div>
+
+    <!-- What I Do -->
+    <section class="section" data-section="roles" id="roles" aria-labelledby="roles-title">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">תחומי עיסוק</p>
+                <h2 class="section-title" id="roles-title">מה אני עושה</h2>
+            </div>
+
+            <div class="roles-grid" role="list">
+                <article class="role" role="listitem">
+                    <h3>משפטים</h3>
+                    <p>עורך דין ונוטריון. ייעוץ וליווי משפטי בנדל"ן, חוזים והסכמים.</p>
+                    <a href="https://www.simon-law.co.il" target="_blank" rel="noopener" class="role-link">simon-law.co.il →</a>
+                </article>
+                <article class="role" role="listitem">
+                    <h3>גישור גירושין</h3>
+                    <p>להפרד לשלום. גישור משפטי לגירושין בכבוד. הסכם הוגן שמגן על כולם - ובמיוחד על הילדים.</p>
+                    <a href="https://www.good-bye.co.il" target="_blank" rel="noopener" class="role-link">good-bye.co.il →</a>
+                </article>
+                <article class="role" role="listitem">
+                    <h3>ייעוץ עסקי</h3>
+                    <p>ליווי בעלי עסקים בהחלטות אסטרטגיות. שילוב של חשיבה כלכלית, הבנה משפטית וניסיון מעשי.</p>
+                </article>
+                <article class="role" role="listitem">
+                    <h3>הרצאות</h3>
+                    <p>גיאופוליטיקה, כלכלה גלובלית, שוק ההון, המזרח התיכון. להזמנת הרצאה - צרו קשר.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Podcast -->
+    <section class="section" data-section="podcast" id="podcast" aria-labelledby="podcast-title">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">פודקאסט</p>
+                <h2 class="section-title" id="podcast-title">להפרד לשלום</h2>
+            </div>
+
+            <div class="podcast-grid">
+                <div class="podcast-info">
+                    <h3>שיחות על מה שחשוב</h3>
+                    <p>מסע אל תוך עולמות הזוגיות, האהבה והקשרים האנושיים. שיחות עומק עם אנשים מעניינים - פוליטיקאים, סופרים, פסיכולוגים, יזמים. על מה שמחבר אותנו, ומה שלפעמים מפריד.</p>
+
+                    <div class="podcast-stats">
+                        <div class="podcast-stat">
+                            <span>109+</span>
+                            <span>פרקים</span>
+                        </div>
+                        <div class="podcast-stat">
+                            <span>5.0</span>
+                            <span>דירוג</span>
+                        </div>
+                    </div>
+
+                    <a href="https://open.spotify.com/show/2T79RNlZ6Ujj3RdE3Av3A6" target="_blank" rel="noopener" class="role-link">האזינו בספוטיפיי →</a>
+                </div>
+
+                <div class="episodes">
+                    <h4>פרקים אחרונים</h4>
+                    <div class="episode">
+                        <span class="episode-title">נועם בשתאוי - מהמטבח לשוק ההון</span>
+                        <span class="episode-meta">109</span>
+                    </div>
+                    <div class="episode">
+                        <span class="episode-title">חן זיו - לצאת מדעתנו בשלווה</span>
+                        <span class="episode-meta">108</span>
+                    </div>
+                    <div class="episode">
+                        <span class="episode-title">גאיה חליפה ז"ל</span>
+                        <span class="episode-meta">107</span>
+                    </div>
+                    <div class="episode">
+                        <span class="episode-title">ח"כ נאור שירי - מאחורי הפוליטיקה</span>
+                        <span class="episode-meta">106</span>
+                    </div>
+                    <div class="episode">
+                        <span class="episode-title">ליאת רוטנר - בארץ הפלאות</span>
+                        <span class="episode-meta">104</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TikTok / Content -->
+    <section class="section" data-section="content" id="content" aria-labelledby="content-title">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">תוכן</p>
+                <h2 class="section-title" id="content-title">גיאופוליטיקה וכלכלה</h2>
+            </div>
+
+            <div class="tiktok-content">
+                <h3>מה שאחרים לא אומרים</h3>
+                <p>תוכן יומיומי על מה שקורה בעולם. לוקח נושאים מורכבים ועושה אותם פשוטים. איראן, ריבית, מזרח תיכון, בינה מלאכותית - בלי פילטרים.</p>
+
+                <div class="tiktok-stats">
+                    <div class="tiktok-stat">
+                        <span>31.4K</span>
+                        <span>עוקבים</span>
+                    </div>
+                    <div class="tiktok-stat">
+                        <span>363K</span>
+                        <span>לייקים</span>
+                    </div>
+                </div>
+
+                <h4 style="font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 24px;">סדרות תוכן</h4>
+                <div class="playlists">
+                    <div class="playlist">
+                        <div class="playlist-title">בראשית AI</div>
+                        <div class="playlist-count">6 פרקים</div>
+                    </div>
+                    <div class="playlist">
+                        <div class="playlist-title">ההגירה לאירופה</div>
+                        <div class="playlist-count">9 פרקים</div>
+                    </div>
+                    <div class="playlist">
+                        <div class="playlist-title">המזרח הקדום</div>
+                        <div class="playlist-count">8 פרקים</div>
+                    </div>
+                    <div class="playlist">
+                        <div class="playlist-title">אגרות חוב</div>
+                        <div class="playlist-count">8 פרקים</div>
+                    </div>
+                    <div class="playlist">
+                        <div class="playlist-title">שוויץ</div>
+                        <div class="playlist-count">5 פרקים</div>
+                    </div>
+                    <div class="playlist">
+                        <div class="playlist-title">חברה בע"מ</div>
+                        <div class="playlist-count">2 פרקים</div>
+                    </div>
+                </div>
+
+                <div class="topics">
+                    <span class="topic">גיאופוליטיקה</span>
+                    <span class="topic">כלכלה</span>
+                    <span class="topic">איראן</span>
+                    <span class="topic">מזרח תיכון</span>
+                    <span class="topic">ריבית</span>
+                    <span class="topic">שוק ההון</span>
+                    <span class="topic">בינה מלאכותית</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Links -->
+    <section class="section" data-section="links" id="links" aria-labelledby="links-title">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">קישורים</p>
+                <h2 class="section-title" id="links-title">הכל במקום אחד</h2>
+            </div>
+
+            <nav class="links-grid" aria-label="קישורים חיצוניים">
+                <a href="https://www.simon-law.co.il" target="_blank" rel="noopener" class="link-item">
+                    <div class="link-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <div>
+                        <div class="link-text">משרד עו"ד</div>
+                        <div class="link-sub">simon-law.co.il</div>
+                    </div>
+                </a>
+                <a href="https://www.good-bye.co.il" target="_blank" rel="noopener" class="link-item">
+                    <div class="link-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    </div>
+                    <div>
+                        <div class="link-text">להפרד לשלום</div>
+                        <div class="link-sub">גישור גירושין</div>
+                    </div>
+                </a>
+                <a href="https://open.spotify.com/show/2T79RNlZ6Ujj3RdE3Av3A6" target="_blank" rel="noopener" class="link-item">
+                    <div class="link-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                    </div>
+                    <div>
+                        <div class="link-text">פודקאסט</div>
+                        <div class="link-sub">Spotify</div>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/nivsimon.space/" target="_blank" rel="noopener" class="link-item">
+                    <div class="link-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </div>
+                    <div>
+                        <div class="link-text">Instagram</div>
+                        <div class="link-sub">@nivsimon.space</div>
+                    </div>
+                </a>
+                <a href="https://www.tiktok.com/@nivsimon_goodbye" target="_blank" rel="noopener" class="link-item">
+                    <div class="link-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+                    </div>
+                    <div>
+                        <div class="link-text">TikTok</div>
+                        <div class="link-sub">@nivsimon_goodbye</div>
+                    </div>
+                </a>
+            </nav>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2>בואו נדבר</h2>
+            <a href="https://wa.me/972507357352" class="whatsapp-btn">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                וואטסאפ
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>ניב סימון · תל אביב · ציריך</p>
+    </footer>
+
+
+    <!-- Navigation Wheel - Accessible Navigation -->
+    <nav class="nav-wheel" aria-label="ניווט מהיר בין חלקי הדף">
+        <div class="wheel-container" id="wheelContainer">
+            <div class="wheel-ring"></div>
+
+            <!-- Labels container that rotates -->
+            <div class="wheel-labels" id="wheelLabels">
+                <span class="wheel-label" data-section="hero" data-index="0">ניב סימון</span>
+                <span class="wheel-label" data-section="roles" data-index="1">תחומים</span>
+                <span class="wheel-label" data-section="podcast" data-index="2">פודקאסט</span>
+                <span class="wheel-label" data-section="content" data-index="3">תוכן</span>
+                <span class="wheel-label" data-section="links" data-index="4">קישורים</span>
+            </div>
+
+            <!-- Center Photo -->
+            <div class="wheel-photo">
+                <img src="https://static.wixstatic.com/media/415d0e_33ceb576e08e4525909aea9cde01157e~mv2.jpg/v1/fill/w_200,h_200,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_20201026_143528_edited.jpg" alt="ניב סימון">
+            </div>
+
+            <!-- Pointer indicator -->
+            <div class="wheel-pointer"></div>
+        </div>
+    </nav>
+
+    <script>
+        // Sections configuration
+        const sections = [
+            { id: 'hero', element: document.querySelector('[data-section="hero"]'), index: 0 },
+            { id: 'roles', element: document.querySelector('[data-section="roles"]'), index: 1 },
+            { id: 'podcast', element: document.querySelector('[data-section="podcast"]'), index: 2 },
+            { id: 'content', element: document.querySelector('[data-section="content"]'), index: 3 },
+            { id: 'links', element: document.querySelector('[data-section="links"]'), index: 4 }
+        ];
+
+        const wheelLabelElements = document.querySelectorAll('.wheel-label');
+        let currentSectionIndex = -1;
+
+        // Arc radius and pointer position (pointer is at center-left of wheel)
+        const radius = 85;
+        const pointerAngle = 180; // Pointer is at left side (180 degrees)
+        const angleStep = 25; // Degrees between each label on the arc
+
+        function positionLabels(activeIndex) {
+            wheelLabelElements.forEach((label, i) => {
+                // Calculate angle: active label at pointer, others spread on arc
+                const offsetFromActive = i - activeIndex;
+                const angle = pointerAngle + (offsetFromActive * angleStep);
+                const angleRad = (angle * Math.PI) / 180;
+
+                // Calculate position on circle
+                const x = Math.cos(angleRad) * radius;
+                const y = Math.sin(angleRad) * radius;
+
+                // Apply transform (from center of wheel)
+                label.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+
+                // Update classes
+                label.classList.remove('active', 'adjacent', 'visible');
+
+                if (offsetFromActive === 0) {
+                    label.classList.add('active', 'visible');
+                } else if (Math.abs(offsetFromActive) === 1) {
+                    label.classList.add('adjacent', 'visible');
+                } else if (Math.abs(offsetFromActive) === 2) {
+                    label.classList.add('visible');
+                    label.style.opacity = '0.3';
+                }
+            });
+        }
+
+        function updateWheel() {
+            const windowHeight = window.innerHeight;
+
+            // Find current section based on scroll position
+            let activeSection = sections[0];
+
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const section = sections[i];
+                if (section.element) {
+                    const rect = section.element.getBoundingClientRect();
+                    if (rect.top <= windowHeight * 0.4) {
+                        activeSection = section;
+                        break;
+                    }
+                }
+            }
+
+            // Only update if section changed
+            if (currentSectionIndex !== activeSection.index) {
+                currentSectionIndex = activeSection.index;
+                positionLabels(currentSectionIndex);
+            }
+        }
+
+        // Throttled scroll event
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateWheel();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Initial update
+        updateWheel();
+
+        // Click to navigate
+        wheelLabelElements.forEach(label => {
+            label.addEventListener('click', () => {
+                const sectionId = label.dataset.section;
+                const section = sections.find(s => s.id === sectionId);
+                if (section && section.element) {
+                    section.element.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+
+</body>
+</html>
