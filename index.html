@@ -2,28 +2,32 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>ניב סימון</title>
-    <meta name="description" content="ניב סימון - עורך דין, נוטריון, כלכלן, יועץ עסקי ומרצה.">
-    <meta name="theme-color" content="#000000">
-    <meta property="og:title" content="ניב סימון - עו״ד, נוטריון, יועץ עסקי">
-    <meta property="og:description" content="עורך דין ונוטריון. מלווה עסקים ומשפחות 18 שנה. בונה אפליקציות, מארח פודקאסט, יוצר תוכן.">
+    <meta name="description" content="ניב סימון — עורך דין ונוטריון, יועץ, מרצה, ובונה אפליקציות בינה מלאכותית.">
+    <meta name="theme-color" content="#f3efe8">
+    <meta property="og:title" content="ניב סימון">
+    <meta property="og:description" content="עורך דין ונוטריון. מלווה עסקים ומשפחות עשרים שנה.">
     <meta property="og:type" content="website">
 
-    <!-- Structured Data - Schema.org -->
+    <!-- Fonts: Noto Serif Hebrew (literary serif) + Heebo (geometric sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@300;400;500;600;700;800;900&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "ניב סימון",
         "alternateName": "Niv Simon",
-        "jobTitle": ["עורך דין", "נוטריון", "כלכלן", "יועץ עסקי", "מרצה"],
-        "description": "עורך דין ונוטריון. מלווה עסקים ומשפחות 18 שנה.",
+        "jobTitle": ["עורך דין", "נוטריון", "כלכלן", "יועץ עסקי", "מרצה", "מפתח אפליקציות"],
+        "description": "עורך דין ונוטריון. מלווה עסקים ומשפחות עשרים שנה.",
         "url": "https://www.simon-law.co.il",
         "telephone": "+972-3-9434610",
         "address": {
             "@type": "PostalAddress",
-            "addressLocality": "רמת השרון",
+            "addressLocality": "תל אביב",
             "addressCountry": "IL"
         },
         "sameAs": [
@@ -38,1105 +42,1513 @@
         }
     }
     </script>
+
     <style>
-        @font-face {
-            font-family: 'Alef';
-            src: url('fonts/Alef-regular.woff') format('woff');
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'Alef';
-            src: url('fonts/Alef-bold.woff') format('woff');
-            font-weight: 700;
-            font-style: normal;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* ======================================================
+           Tokens
+           ====================================================== */
         :root {
-            --black: #000000;
-            --white: #ffffff;
-            --gray: #888888;
-            --dark-gray: #1a1a1a;
+            --bone:        #f3efe8;
+            --paper:       #ebe5d8;
+            --ink:         #1a1614;
+            --ink-soft:    #2c2622;
+            --muted:       #6b5e54;
+            --rule:        #d8d0c2;
+            --rule-soft:   #e6dfd1;
+            --oxblood:     #7a1f1f;
+
+            --serif: 'Noto Serif Hebrew', 'David Libre', 'Times New Roman', Georgia, serif;
+            --sans:  'Heebo', 'Open Sans Hebrew', 'Arial Hebrew', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+            --pad-x: clamp(20px, 5vw, 96px);
+            --max-w: 1320px;
+
+            --reveal-d: 0.85s;
+            --reveal-e: cubic-bezier(0.2, 0.7, 0.2, 1);
         }
+
+        /* ======================================================
+           Reset & base
+           ====================================================== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         html {
             scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
         }
 
         body {
-            font-family: 'Alef', sans-serif;
-            background: var(--black);
-            color: var(--white);
-            line-height: 1.5;
+            font-family: var(--serif);
+            background: var(--bone);
+            color: var(--ink);
+            font-size: 17px;
+            line-height: 1.7;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            font-feature-settings: "kern", "liga", "calt";
+            overflow-x: hidden;
         }
 
-        a {
-            color: var(--white);
-            text-decoration: none;
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+        button { font: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+        ol, ul { list-style: none; }
+
+        ::selection { background: var(--ink); color: var(--bone); }
+
+        .latin { direction: ltr; unicode-bidi: isolate; font-feature-settings: "kern", "liga", "tnum"; }
+
+        /* ======================================================
+           Reading progress hairline
+           ====================================================== */
+        .progress {
+            position: fixed;
+            top: 0; inset-inline: 0;
+            height: 1px;
+            z-index: 200;
+            pointer-events: none;
+            background: transparent;
+        }
+        .progress::after {
+            content: '';
+            display: block;
+            height: 100%;
+            width: var(--p, 0%);
+            background: var(--oxblood);
+            transition: width 80ms linear;
         }
 
-        /* Accessibility - Skip to Content */
+        /* ======================================================
+           Skip link
+           ====================================================== */
         .skip-link {
             position: absolute;
             top: -100px;
-            left: 50%;
+            inset-inline-start: 50%;
             transform: translateX(-50%);
-            background: var(--white);
-            color: var(--black);
+            background: var(--ink);
+            color: var(--bone);
             padding: 12px 24px;
-            font-weight: 700;
+            font-family: var(--sans);
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
             z-index: 9999;
-            border-radius: 0 0 8px 8px;
-            transition: top 0.3s;
+        }
+        .skip-link:focus { top: 0; }
+
+        /* ======================================================
+           Top chapter nav
+           ====================================================== */
+        .topnav {
+            position: fixed;
+            top: 0; inset-inline: 0;
+            background: rgba(243, 239, 232, 0.92);
+            -webkit-backdrop-filter: saturate(120%) blur(10px);
+            backdrop-filter: saturate(120%) blur(10px);
+            border-bottom: 1px solid var(--rule);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px var(--pad-x);
+            z-index: 100;
+            transform: translateY(-100%);
+            transition: transform 0.5s var(--reveal-e);
+        }
+        .topnav.visible { transform: translateY(0); }
+
+        .topnav-mark {
+            font-family: var(--serif);
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--ink);
+            letter-spacing: 0.01em;
+        }
+        .topnav-mark a { display: inline-block; }
+
+        .topnav-list {
+            display: flex;
+            gap: clamp(14px, 2vw, 28px);
+            align-items: center;
+        }
+        .topnav-list a {
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            transition: color 0.25s ease;
+        }
+        .topnav-list a:hover { color: var(--ink); }
+
+        .topnav-cta {
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--ink);
+            border-bottom: 1px solid var(--ink);
+            padding-bottom: 3px;
+        }
+        .topnav-cta:hover { color: var(--oxblood); border-bottom-color: var(--oxblood); }
+
+        .topnav-toggle {
+            display: none;
+            width: 36px;
+            height: 36px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            padding: 0;
+        }
+        .topnav-toggle span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: var(--ink);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform-origin: center;
+        }
+        .topnav-toggle.open span:first-child {
+            transform: translateY(3.25px) rotate(45deg);
+        }
+        .topnav-toggle.open span:last-child {
+            transform: translateY(-3.25px) rotate(-45deg);
         }
 
-        .skip-link:focus {
-            top: 0;
+        /* Mobile menu panel */
+        .topnav-panel {
+            position: fixed;
+            top: 0; inset-inline: 0;
+            background: var(--bone);
+            padding: 88px var(--pad-x) 48px;
+            transform: translateY(-110%);
+            transition: transform 0.5s var(--reveal-e);
+            z-index: 95;
+            min-height: 100dvh;
+            min-height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        .topnav-panel.open { transform: translateY(0); }
+        .topnav-panel ol {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--rule);
+        }
+        .topnav-panel li {
+            border-bottom: 1px solid var(--rule);
+        }
+        .topnav-panel a {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 24px;
+            padding: 22px 0;
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--ink);
+        }
+        .topnav-panel a::after {
+            content: attr(data-num);
+            font-family: var(--sans);
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+        }
+        .topnav-panel-foot {
+            margin-top: auto;
+            padding-top: 32px;
+            border-top: 1px solid var(--rule);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .topnav-panel-foot p {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+        .topnav-panel-foot .latin {
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            color: var(--ink);
+            text-transform: uppercase;
         }
 
-        /* Enhanced Focus States - Accessibility */
-        a:focus,
-        button:focus {
-            outline: 2px solid var(--white);
-            outline-offset: 3px;
+        @media (max-width: 980px) {
+            .topnav { padding: 12px clamp(20px, 5vw, 32px); }
+            .topnav-list { display: none; }
+            .topnav-cta { display: none; }
+            .topnav-toggle { display: flex; }
         }
 
-        .role:focus-within,
-        .link-item:focus-within {
-            background: var(--dark-gray);
-            outline: 2px solid rgba(255, 255, 255, 0.3);
-            outline-offset: -2px;
+        /* ======================================================
+           Hero — centered
+           ====================================================== */
+        .hero {
+            padding: clamp(72px, 11vh, 130px) var(--pad-x) clamp(56px, 8vh, 96px);
+            border-bottom: 1px solid var(--rule);
+            position: relative;
+        }
+        .hero-meta {
+            text-align: center;
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 36px;
+        }
+        .hero-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .hero-folio {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+        .hero-folio span {
+            display: block;
+            width: 72px;
+            height: 1px;
+            background: var(--muted);
+        }
+        .hero-name {
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: clamp(4rem, 16vw, 9rem);
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            color: var(--ink);
+            margin-bottom: clamp(40px, 6vh, 64px);
+        }
+        .hero-portrait {
+            width: clamp(140px, 22vw, 200px);
+            margin: 0 auto clamp(36px, 5vh, 56px);
+        }
+        .hero-portrait img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            object-position: center 18%;
+            border-radius: 50%;
+            filter: grayscale(100%) contrast(1.04);
+            border: 1px solid var(--rule);
+        }
+        .hero-portrait figcaption {
+            font-family: var(--sans);
+            font-size: 0.62rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 14px;
+            text-align: center;
+        }
+        .hero-tagline {
+            font-family: var(--serif);
+            font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+            line-height: 1.55;
+            color: var(--muted);
+            max-width: 36ch;
+            margin: 0 auto clamp(36px, 5vh, 56px);
+        }
+        .hero-tagline strong {
+            color: var(--ink);
+            font-weight: 700;
+        }
+        .hero-quote {
+            max-width: 36ch;
+            margin: 0 auto;
+        }
+        .hero-quote::before {
+            /* short ornamental rule above the quote (replaces the side rule) */
+            content: '';
+            display: block;
+            width: 32px;
+            height: 1px;
+            background: var(--ink);
+            margin: 0 auto 28px;
+        }
+        .hero-quote blockquote {
+            font-family: var(--serif);
+            font-size: clamp(1.4rem, 2.4vw, 1.95rem);
+            line-height: 1.4;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--ink);
+        }
+        .hero-quote figcaption {
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 18px;
         }
 
-        /* Reduced Motion - Accessibility */
+        /* ======================================================
+           Stats — horizontal on every viewport
+           ====================================================== */
+        .stats {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: clamp(48px, 8vh, 100px) clamp(12px, 4vw, 48px);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-bottom: 1px solid var(--rule);
+        }
+        .stat {
+            text-align: center;
+            padding: clamp(12px, 2vw, 28px) clamp(8px, 2vw, 24px);
+            position: relative;
+        }
+        .stat + .stat {
+            border-inline-start: 1px solid var(--rule);
+        }
+        .stat-number {
+            display: block;
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: clamp(1.85rem, 7vw, 5.5rem);
+            letter-spacing: -0.03em;
+            line-height: 1;
+            color: var(--ink);
+            font-variant-numeric: tabular-nums lining-nums;
+        }
+        .stat-label {
+            display: block;
+            font-family: var(--sans);
+            font-size: clamp(0.55rem, 1.6vw, 0.72rem);
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: clamp(10px, 1.6vh, 22px);
+        }
+
+        /* ======================================================
+           Chapter — shared
+           ====================================================== */
+        .chapter {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: clamp(56px, 9vh, 110px) var(--pad-x);
+            position: relative;
+        }
+        .chapter + .chapter { border-top: 1px solid var(--rule); }
+
+        .chapter-folio {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-family: var(--sans);
+            font-size: 0.72rem;
+            letter-spacing: 0.36em;
+            text-transform: uppercase;
+            color: var(--ink);
+            margin-bottom: 28px;
+            font-weight: 500;
+        }
+        .chapter-folio::before {
+            content: '';
+            width: 56px;
+            height: 1px;
+            background: var(--muted);
+        }
+
+        .chapter-title {
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: clamp(2.25rem, 7vw, 4.75rem);
+            letter-spacing: -0.035em;
+            line-height: 1;
+            color: var(--ink);
+            margin-bottom: clamp(20px, 3vh, 32px);
+            max-width: 18ch;
+        }
+        .chapter-title em {
+            font-style: italic;
+            color: var(--muted);
+        }
+        .chapter-title small {
+            display: block;
+            font-size: 0.36em;
+            line-height: 1.3;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--muted);
+            letter-spacing: 0;
+            margin-top: 14px;
+        }
+
+        .chapter-lead {
+            font-family: var(--serif);
+            font-size: clamp(1.1rem, 1.9vw, 1.45rem);
+            line-height: 1.55;
+            color: var(--ink);
+            max-width: 32ch;
+            margin-bottom: 36px;
+        }
+
+        .chapter-supporting {
+            font-family: var(--serif);
+            font-size: 1.0625rem;
+            line-height: 1.75;
+            color: var(--muted);
+            max-width: 56ch;
+            margin-bottom: 20px;
+        }
+        .chapter-supporting + .chapter-supporting { margin-top: -4px; }
+
+        .chapter-disclaimer {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--muted);
+            max-width: 50ch;
+            border-top: 1px solid var(--rule);
+            padding-top: 20px;
+            margin-top: 32px;
+        }
+
+        .chapter-link {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 14px;
+            margin-top: clamp(28px, 4vh, 48px);
+            font-family: var(--sans);
+            font-size: 0.72rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--ink);
+            border-bottom: 1px solid var(--ink);
+            padding-bottom: 6px;
+            transition: color 0.25s, border-color 0.25s;
+        }
+        .chapter-link::after {
+            content: '→';
+            font-family: var(--serif);
+            font-size: 1.3em;
+            line-height: 0;
+            transform: translateY(2px);
+            transition: transform 0.25s ease;
+        }
+        .chapter-link:hover {
+            color: var(--oxblood);
+            border-bottom-color: var(--oxblood);
+        }
+        .chapter-link:hover::after {
+            transform: translateY(2px) translateX(-4px);
+        }
+
+        /* Two-column areas */
+        .chapter-areas {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 40px clamp(36px, 5vw, 80px);
+            margin-top: clamp(28px, 4vh, 48px);
+            max-width: 92ch;
+        }
+        .chapter-area h3 {
+            font-family: var(--sans);
+            font-weight: 500;
+            font-size: 0.72rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--ink);
+            padding-bottom: 14px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--ink);
+        }
+        .chapter-area p {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: var(--ink-soft);
+        }
+
+        @media (max-width: 720px) {
+            .chapter-areas { grid-template-columns: 1fr; gap: 32px; }
+        }
+
+        /* Counted list */
+        .chapter-list {
+            counter-reset: item;
+            margin-top: clamp(24px, 4vh, 48px);
+            max-width: 64ch;
+            border-top: 1px solid var(--rule);
+        }
+        .chapter-list li {
+            counter-increment: item;
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            align-items: baseline;
+            gap: 24px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--rule);
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: var(--ink);
+        }
+        .chapter-list li::before {
+            content: counter(item, decimal-leading-zero);
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+            font-feature-settings: "tnum";
+        }
+
+        /* ======================================================
+           V — Lectures
+           ====================================================== */
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px clamp(36px, 5vw, 80px);
+            margin-top: clamp(28px, 4vh, 48px);
+            max-width: 92ch;
+        }
+        .topic h3 {
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: clamp(1.2rem, 2.2vw, 1.45rem);
+            letter-spacing: -0.01em;
+            color: var(--ink);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        .topic h3 .topic-num {
+            font-family: var(--sans);
+            font-size: 0.6rem;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+        .topic p {
+            font-family: var(--serif);
+            font-size: 1rem;
+            line-height: 1.65;
+            color: var(--muted);
+        }
+        @media (max-width: 720px) {
+            .topic-grid { grid-template-columns: 1fr; gap: 36px; }
+        }
+
+        /* ======================================================
+           VI — Podcast
+           ====================================================== */
+        .podcast-grid {
+            display: grid;
+            grid-template-columns: 5fr 7fr;
+            gap: clamp(40px, 5vw, 80px);
+            margin-top: clamp(24px, 4vh, 48px);
+        }
+        .podcast-meta {
+            display: flex;
+            gap: 48px;
+            margin-top: 36px;
+        }
+        .podcast-meta-item { display: flex; flex-direction: column; }
+        .podcast-meta-num {
+            font-family: var(--serif);
+            font-size: clamp(1.85rem, 3.5vw, 2.75rem);
+            line-height: 1;
+            font-weight: 500;
+            color: var(--ink);
+            font-variant-numeric: tabular-nums lining-nums;
+        }
+        .podcast-meta-label {
+            font-family: var(--sans);
+            font-size: 0.65rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 12px;
+        }
+        .episodes-label {
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 16px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--ink);
+        }
+        .episodes { display: flex; flex-direction: column; }
+        .episode {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: baseline;
+            gap: 18px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+        .episode-title {
+            font-family: var(--serif);
+            font-size: 1.0125rem;
+            line-height: 1.45;
+            color: var(--ink);
+        }
+        .episode-num {
+            font-family: var(--sans);
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+            font-feature-settings: "tnum";
+        }
+        @media (max-width: 880px) {
+            .podcast-grid { grid-template-columns: 1fr; gap: 48px; }
+            .podcast-meta { gap: 36px; }
+        }
+
+        /* ======================================================
+           VII — TikTok
+           ====================================================== */
+        .tiktok-subtitle {
+            font-family: var(--serif);
+            font-size: clamp(1.2rem, 2vw, 1.6rem);
+            line-height: 1.5;
+            color: var(--ink);
+            max-width: 36ch;
+            margin-bottom: 48px;
+        }
+        .series-label {
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 14px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--ink);
+            display: block;
+        }
+        .playlists {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            border-bottom: 1px solid var(--rule);
+        }
+        .playlist {
+            padding: 24px;
+            padding-inline-start: 24px;
+            border-top: 1px solid var(--rule);
+            border-inline-start: 1px solid var(--rule);
+        }
+        .playlist:first-child { border-top: none; }
+        .playlist-title {
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+        .playlist-meta {
+            font-family: var(--sans);
+            font-size: 0.62rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 24px;
+            margin-top: 36px;
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .topic-tag::before { content: '— '; opacity: 0.5; }
+
+        /* ======================================================
+           VIII — Software
+           ====================================================== */
+        .products {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-top: clamp(28px, 4vh, 48px);
+            border-top: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+        }
+        .product {
+            padding: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 36px);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: background 0.3s ease;
+        }
+        .product + .product { border-inline-start: 1px solid var(--rule); }
+        .product:hover { background: var(--paper); }
+        .product-num {
+            font-family: var(--sans);
+            font-size: 0.62rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .product-name {
+            font-family: var(--serif);
+            font-size: clamp(1.3rem, 2.6vw, 1.85rem);
+            font-weight: 500;
+            letter-spacing: -0.015em;
+            color: var(--ink);
+        }
+        .product-arrow {
+            margin-top: 8px;
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--muted);
+            transition: color 0.25s;
+        }
+        .product:hover .product-arrow { color: var(--oxblood); }
+        @media (max-width: 720px) {
+            .products { grid-template-columns: 1fr; }
+            .product + .product { border-inline-start: none; border-top: 1px solid var(--rule); }
+        }
+
+        /* ======================================================
+           IX — Contact
+           ====================================================== */
+        .contact-intro {
+            font-family: var(--serif);
+            font-size: clamp(1.1rem, 1.9vw, 1.35rem);
+            line-height: 1.65;
+            color: var(--ink);
+            max-width: 50ch;
+            margin-bottom: clamp(28px, 4vh, 48px);
+        }
+        .routes {
+            border-top: 1px solid var(--ink);
+            max-width: 76ch;
+        }
+        .route {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: baseline;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+        .route-label {
+            font-family: var(--serif);
+            font-size: 1.0625rem;
+            color: var(--ink);
+            font-weight: 500;
+        }
+        .route-target {
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--muted);
+            transition: color 0.25s ease;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+        }
+        .route-target:hover {
+            color: var(--oxblood);
+            border-bottom-color: var(--oxblood);
+        }
+        @media (max-width: 600px) {
+            .route { grid-template-columns: 1fr; gap: 4px; }
+        }
+
+        /* ======================================================
+           Catchall — full-bleed oxblood
+           ====================================================== */
+        .catchall {
+            background: var(--oxblood);
+            color: var(--bone);
+            padding: clamp(64px, 11vh, 130px) var(--pad-x);
+            text-align: center;
+            position: relative;
+        }
+        .catchall-folio {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+            font-family: var(--sans);
+            font-size: 0.65rem;
+            letter-spacing: 0.36em;
+            text-transform: uppercase;
+            color: rgba(243, 239, 232, 0.65);
+        }
+        .catchall-folio::before,
+        .catchall-folio::after {
+            content: '';
+            width: 36px;
+            height: 1px;
+            background: rgba(243, 239, 232, 0.5);
+        }
+        .catchall-inner {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .catchall-eyebrow {
+            font-family: var(--sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.42em;
+            text-transform: uppercase;
+            color: rgba(243, 239, 232, 0.7);
+            margin-bottom: 24px;
+        }
+        .catchall-title {
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: clamp(2rem, 6vw, 4rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+        .catchall-title em {
+            font-style: italic;
+            font-weight: 400;
+        }
+        .catchall-body {
+            font-family: var(--serif);
+            font-size: clamp(1rem, 1.4vw, 1.15rem);
+            line-height: 1.65;
+            max-width: 50ch;
+            margin: 0 auto 40px;
+            color: rgba(243, 239, 232, 0.85);
+        }
+        .catchall-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            background: transparent;
+            color: var(--bone);
+            border: 1px solid rgba(243, 239, 232, 0.6);
+            padding: 18px 40px;
+            font-family: var(--sans);
+            font-size: 0.72rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+            min-height: 48px;
+        }
+        .catchall-btn:hover {
+            background: var(--bone);
+            color: var(--oxblood);
+            border-color: var(--bone);
+        }
+        .catchall-btn svg {
+            width: 18px; height: 18px;
+            fill: currentColor;
+        }
+
+        /* ======================================================
+           Footer
+           ====================================================== */
+        .footer {
+            background: var(--bone);
+            padding: clamp(40px, 6vh, 72px) var(--pad-x) clamp(28px, 4vh, 48px);
+        }
+        .footer-inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 24px;
+            align-items: center;
+            border-top: 1px solid var(--rule);
+            padding-top: 32px;
+        }
+        .colophon {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 0.88rem;
+            color: var(--muted);
+        }
+        .footer-mark {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--ink);
+            text-align: center;
+        }
+        .footer-social {
+            display: flex;
+            gap: 22px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+        .footer-social a {
+            font-family: var(--sans);
+            font-size: 0.65rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--ink);
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+            transition: border-color 0.25s ease;
+        }
+        .footer-social a:hover { border-bottom-color: var(--ink); }
+        @media (max-width: 720px) {
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                text-align: center;
+                justify-items: center;
+            }
+            .footer-social { justify-content: center; }
+            .footer-mark { text-align: center; }
+            .colophon { text-align: center; }
+        }
+
+        /* ======================================================
+           Reveal animation (subtle)
+           ====================================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity var(--reveal-d) var(--reveal-e), transform var(--reveal-d) var(--reveal-e);
+        }
+        .reveal.shown { opacity: 1; transform: none; }
+        .reveal[data-delay="1"] { transition-delay: 80ms; }
+        .reveal[data-delay="2"] { transition-delay: 160ms; }
+        .reveal[data-delay="3"] { transition-delay: 240ms; }
+        .reveal[data-delay="4"] { transition-delay: 320ms; }
+
         @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
+            html { scroll-behavior: auto; }
+            .reveal { opacity: 1; transform: none; transition: none; }
+            .progress::after { transition: none; }
+            *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
-            html {
-                scroll-behavior: auto;
-            }
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            border-bottom: 1px solid var(--dark-gray);
-        }
-
-        .hero-content {
-            padding: 80px 64px;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 10vw, 7rem);
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            line-height: 0.9;
-            margin-bottom: 32px;
-            text-transform: uppercase;
-        }
-
-        .hero-subtitle {
-            font-size: 1rem;
-            color: var(--gray);
-            font-weight: 400;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            margin-bottom: 48px;
-        }
-
-        .hero-desc {
-            font-size: 1.35rem;
-            line-height: 1.6;
-            color: var(--gray);
-            max-width: 500px;
-        }
-
-        .hero-desc strong {
-            color: var(--white);
-            font-weight: 700;
-        }
-
-        .hero-image {
-            height: 100%;
-            min-height: 100vh;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
-            filter: grayscale(100%);
-        }
-
-        /* Stats */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            border-bottom: 1px solid var(--dark-gray);
-        }
-
-        .stat {
-            padding: 48px 24px;
-            text-align: center;
-            border-left: 1px solid var(--dark-gray);
-        }
-
-        .stat:last-child {
-            border-left: none;
-        }
-
-        .stat-number {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            margin-top: 8px;
-        }
-
-        /* Section */
-        .section {
-            padding: 120px 0;
-            border-bottom: 1px solid var(--dark-gray);
-        }
-
-        .section-header {
-            margin-bottom: 64px;
-        }
-
-        .section-label {
-            font-size: 0.75rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 16px;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            text-transform: uppercase;
-        }
-
-        /* Roles Grid */
-        .roles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1px;
-            background: var(--dark-gray);
-        }
-
-        .role {
-            background: var(--black);
-            padding: 48px 32px;
-            transition: background 0.3s;
-        }
-
-        .role:hover {
-            background: var(--dark-gray);
-        }
-
-        .role h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-        }
-
-        .role p {
-            color: var(--gray);
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .role-link {
-            display: inline-block;
-            margin-top: 24px;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            border-bottom: 1px solid var(--white);
-            padding-bottom: 4px;
-            transition: opacity 0.3s;
-        }
-
-        .role-link:hover {
-            opacity: 0.6;
-        }
-
-        /* Podcast */
-        .podcast-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: start;
-        }
-
-        .podcast-info h3 {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 700;
-            margin-bottom: 24px;
-            text-transform: uppercase;
-        }
-
-        .podcast-info p {
-            color: var(--gray);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 32px;
-        }
-
-        .podcast-stats {
-            display: flex;
-            gap: 48px;
-            margin-bottom: 32px;
-        }
-
-        .podcast-stat span {
-            display: block;
-        }
-
-        .podcast-stat span:first-child {
-            font-size: 2rem;
-            font-weight: 700;
-        }
-
-        .podcast-stat span:last-child {
-            font-size: 0.75rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .episodes {
-            margin-top: 48px;
-        }
-
-        .episodes h4 {
-            font-size: 0.75rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            margin-bottom: 24px;
-        }
-
-        .episode {
-            padding: 20px 0;
-            border-top: 1px solid var(--dark-gray);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .episode-title {
-            font-weight: 700;
-        }
-
-        .episode-meta {
-            font-size: 0.875rem;
-            color: var(--gray);
-        }
-
-        /* Topics */
-        .topics {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 32px;
-        }
-
-        .topic {
-            padding: 12px 24px;
-            border: 1px solid var(--white);
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.3s;
-        }
-
-        .topic:hover {
-            background: var(--white);
-            color: var(--black);
-        }
-
-        /* TikTok Section */
-        .tiktok-content h3 {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 700;
-            margin-bottom: 24px;
-            text-transform: uppercase;
-        }
-
-        .tiktok-content > p {
-            color: var(--gray);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin-bottom: 48px;
-        }
-
-        .tiktok-stats {
-            display: flex;
-            gap: 64px;
-            margin-bottom: 48px;
-        }
-
-        .tiktok-stat span:first-child {
-            font-size: 3rem;
-            font-weight: 700;
-            display: block;
-        }
-
-        .tiktok-stat span:last-child {
-            font-size: 0.75rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .playlists {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 16px;
-        }
-
-        .playlist {
-            background: var(--dark-gray);
-            padding: 24px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .playlist:hover {
-            transform: translateY(-4px);
-        }
-
-        .playlist-title {
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .playlist-count {
-            font-size: 0.75rem;
-            color: var(--gray);
-        }
-
-        /* Links */
-        .links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1px;
-            background: var(--dark-gray);
-        }
-
-        .link-item {
-            background: var(--black);
-            padding: 32px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            transition: background 0.3s;
-        }
-
-        .link-item:hover {
-            background: var(--dark-gray);
-        }
-
-        .link-icon {
-            width: 48px;
-            height: 48px;
-            border: 1px solid var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .link-icon svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--white);
-        }
-
-        .link-text {
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .link-sub {
-            font-size: 0.75rem;
-            color: var(--gray);
-            margin-top: 2px;
-        }
-
-        /* CTA */
-        .cta {
-            padding: 120px 0;
-            text-align: center;
-        }
-
-        .cta h2 {
-            font-size: clamp(2rem, 6vw, 5rem);
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 48px;
-        }
-
-        .whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 16px;
-            background: var(--white);
-            color: var(--black);
-            padding: 20px 48px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .whatsapp-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(255,255,255,0.1);
-        }
-
-        .whatsapp-btn svg {
-            width: 24px;
-            height: 24px;
-            fill: var(--black);
-        }
-
-        /* Footer */
-        .footer {
-            padding: 48px 0;
-            text-align: center;
-            border-top: 1px solid var(--dark-gray);
-        }
-
-        .footer p {
-            color: var(--gray);
-            font-size: 0.875rem;
-        }
-
-
-        /* Navigation Wheel */
-        .nav-wheel {
-            position: fixed;
-            bottom: 10%;
-            right: -80px;
-            width: 200px;
-            height: 200px;
-            z-index: 1000;
-        }
-
-        .wheel-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .wheel-ring {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            border-radius: 50%;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-        }
-
-        .wheel-labels {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .wheel-label {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: rgba(255, 255, 255, 0.3);
-            white-space: nowrap;
-            cursor: pointer;
-            padding: 5px 8px;
-            border-radius: 3px;
-            transition: all 0.4s ease;
-            pointer-events: auto;
-            opacity: 0;
-        }
-
-        .wheel-label.visible {
-            opacity: 1;
-        }
-
-        .wheel-label.active {
-            color: var(--white);
-            background: rgba(255, 255, 255, 0.15);
-            font-size: 0.7rem;
-        }
-
-        .wheel-label.adjacent {
-            color: rgba(255, 255, 255, 0.55);
-        }
-
-        .wheel-label:hover {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .wheel-photo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            background: var(--black);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.7);
-            z-index: 10;
-        }
-
-        .wheel-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%);
-            transition: filter 0.3s;
-        }
-
-        .nav-wheel:hover .wheel-photo img {
-            filter: grayscale(50%);
-        }
-
-        .wheel-pointer {
-            position: absolute;
-            top: 50%;
-            left: 8px;
-            transform: translateY(-50%);
-            width: 0;
-            height: 0;
-            border-top: 4px solid transparent;
-            border-bottom: 4px solid transparent;
-            border-left: 6px solid var(--white);
-            z-index: 15;
-        }
-
-        /* Mobile */
-        @media (max-width: 900px) {
-            .hero {
-                grid-template-columns: 1fr;
-                min-height: auto;
-            }
-
-            .hero-content {
-                padding: 80px 24px;
-                order: 2;
-            }
-
-            .hero-image {
-                min-height: 60vh;
-                order: 1;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-            }
-
-            .stat {
-                border-left: none;
-                border-bottom: 1px solid var(--dark-gray);
-                padding: 32px 24px;
-            }
-
-            .stat:last-child {
-                border-bottom: none;
-            }
-
-            .section {
-                padding: 80px 0;
-            }
-
-            .podcast-grid {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-
-            .podcast-stats, .tiktok-stats {
-                gap: 32px;
-            }
-
-            .tiktok-stat span:first-child {
-                font-size: 2rem;
-            }
-
-            .links-grid {
-                grid-template-columns: 1fr;
-            }
-
-            /* Mobile wheel adjustments */
-            .nav-wheel {
-                bottom: 8%;
-                right: -65px;
-                width: 170px;
-                height: 170px;
-            }
-
-            .wheel-photo {
-                width: 40px;
-                height: 40px;
-            }
-
-            .wheel-label {
-                font-size: 0.6rem;
-                padding: 4px 6px;
-            }
-
-        }
-
-        @media (max-width: 480px) {
-            .nav-wheel {
-                bottom: 5%;
-                right: -55px;
-                width: 150px;
-                height: 150px;
-            }
-
-            .wheel-photo {
-                width: 35px;
-                height: 35px;
-            }
-
-            .wheel-label {
-                font-size: 0.55rem;
-                padding: 3px 5px;
-            }
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--oxblood);
+            outline-offset: 4px;
+        }
+
+        /* ======================================================
+           Mobile-specific tightenings
+           ====================================================== */
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .chapter-title { letter-spacing: -0.035em; }
+            .stat-number { font-size: 1.85rem; }
+            .stat-label { font-size: 0.55rem; letter-spacing: 0.18em; margin-top: 8px; }
+            .stat { padding: 12px 6px; }
+            .stat + .stat { border-inline-start-width: 1px; }
+            .topnav-mark { font-size: 0.95rem; }
+            .topnav-panel a { font-size: 1.35rem; padding: 18px 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Skip Navigation - Accessibility -->
+    <!-- Reading progress hairline -->
+    <div class="progress" aria-hidden="true"></div>
+
+    <!-- Skip link -->
     <a href="#hero" class="skip-link">דלג לתוכן הראשי</a>
 
-    <!-- Hero -->
-    <section class="hero" data-section="hero" id="hero" role="main">
-        <div class="hero-content">
-            <h1>ניב סימון</h1>
-            <p class="hero-subtitle">תל אביב · ציריך</p>
-            <p class="hero-desc">
-                <strong>עורך דין ונוטריון.</strong><br>
-                מלווה עסקים ומשפחות 18 שנה.
-                <br><br>
-                בונה אפליקציות.<br>
-                מארח פודקאסט.<br>
-                יוצר תוכן.
-            </p>
-        </div>
-        <div class="hero-image">
-            <img src="https://static.wixstatic.com/media/415d0e_33ceb576e08e4525909aea9cde01157e~mv2.jpg/v1/fill/w_600,h_900,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_20201026_143528_edited.jpg" alt="ניב סימון">
-        </div>
-    </section>
+    <!-- Top chapter nav -->
+    <nav class="topnav" aria-label="ניווט פרקים">
+        <span class="topnav-mark"><a href="#hero">ניב סימון</a></span>
+        <ol class="topnav-list">
+            <li><a href="#law">משפטים</a></li>
+            <li><a href="#mediation">גישור</a></li>
+            <li><a href="#business">עסקי</a></li>
+            <li><a href="#personal">אישי</a></li>
+            <li><a href="#lectures">הרצאות</a></li>
+            <li><a href="#podcast">פודקאסט</a></li>
+            <li><a href="#tiktok">תוכן</a></li>
+            <li><a href="#software">תוכנה</a></li>
+        </ol>
+        <a class="topnav-cta" href="#contact">יצירת קשר</a>
+        <button class="topnav-toggle" aria-label="פתח תפריט" aria-controls="topnav-panel" aria-expanded="false">
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
 
-    <!-- Stats -->
-    <div class="stats">
-        <div class="stat">
-            <div class="stat-number">31K+</div>
-            <div class="stat-label">עוקבים</div>
-        </div>
-        <div class="stat">
-            <div class="stat-number">109+</div>
-            <div class="stat-label">פרקים</div>
-        </div>
-        <div class="stat">
-            <div class="stat-number">363K</div>
-            <div class="stat-label">לייקים</div>
+    <!-- Mobile menu panel -->
+    <div class="topnav-panel" id="topnav-panel" aria-hidden="true">
+        <ol>
+            <li><a href="#law" data-num="I">משפטים</a></li>
+            <li><a href="#mediation" data-num="II">גישור גירושין</a></li>
+            <li><a href="#business" data-num="III">ייעוץ עסקי</a></li>
+            <li><a href="#personal" data-num="IV">ייעוץ אישי</a></li>
+            <li><a href="#lectures" data-num="V">הרצאות</a></li>
+            <li><a href="#podcast" data-num="VI">פודקאסט</a></li>
+            <li><a href="#tiktok" data-num="VII">טיקטוק</a></li>
+            <li><a href="#software" data-num="VIII">אפליקציות</a></li>
+            <li><a href="#contact" data-num="IX">יצירת קשר</a></li>
+        </ol>
+        <div class="topnav-panel-foot">
+            <p>תל אביב — ציריך</p>
         </div>
     </div>
 
-    <!-- What I Do -->
-    <section class="section" data-section="roles" id="roles" aria-labelledby="roles-title">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">תחומי עיסוק</p>
-                <h2 class="section-title" id="roles-title">מה אני עושה</h2>
+    <!-- ===================================================
+         HERO — centered
+         =================================================== -->
+    <header class="hero" id="hero">
+        <p class="hero-meta">תל אביב · ציריך</p>
+        <div class="hero-inner">
+            <p class="hero-folio reveal"><span></span></p>
+            <h1 class="hero-name reveal" data-delay="1">ניב סימון</h1>
+
+            <div class="hero-portrait reveal" data-delay="2">
+                <img src="https://static.wixstatic.com/media/415d0e_33ceb576e08e4525909aea9cde01157e~mv2.jpg/v1/fill/w_500,h_500,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_20201026_143528_edited.jpg" alt="ניב סימון">
             </div>
 
-            <div class="roles-grid" role="list">
-                <article class="role" role="listitem">
-                    <h3>משפטים</h3>
-                    <p>עורך דין ונוטריון. ייעוץ וליווי משפטי בנדל"ן, חוזים והסכמים.</p>
-                    <a href="https://www.simon-law.co.il" target="_blank" rel="noopener" class="role-link">simon-law.co.il →</a>
-                </article>
-                <article class="role" role="listitem">
-                    <h3>גישור גירושין</h3>
-                    <p>להפרד לשלום. גישור משפטי לגירושין בכבוד. הסכם הוגן שמגן על כולם - ובמיוחד על הילדים.</p>
-                    <a href="https://www.good-bye.co.il" target="_blank" rel="noopener" class="role-link">good-bye.co.il →</a>
-                </article>
-                <article class="role" role="listitem">
-                    <h3>ייעוץ עסקי</h3>
-                    <p>ליווי בעלי עסקים בהחלטות אסטרטגיות. שילוב של חשיבה כלכלית, הבנה משפטית וניסיון מעשי.</p>
-                </article>
-                <article class="role" role="listitem">
-                    <h3>הרצאות</h3>
-                    <p>גיאופוליטיקה, כלכלה גלובלית, שוק ההון, המזרח התיכון. להזמנת הרצאה - צרו קשר.</p>
-                </article>
-            </div>
+            <p class="hero-tagline reveal" data-delay="3">
+                <strong>עורך דין ונוטריון.</strong><br>
+                מלווה עסקים ומשפחות עשרים שנה.
+            </p>
+
+            <figure class="hero-quote reveal" data-delay="4">
+                <blockquote>„האושר היחיד ניתן לנו במפעלי היצירה״</blockquote>
+                <figcaption>פרידריך ניטשה</figcaption>
+            </figure>
+        </div>
+    </header>
+
+    <!-- ===================================================
+         STATS
+         =================================================== -->
+    <section class="stats" aria-label="נתונים">
+        <div class="stat reveal">
+            <span class="stat-number" data-target="8M+">8M+</span>
+            <span class="stat-label">צפיות</span>
+        </div>
+        <div class="stat reveal" data-delay="1">
+            <span class="stat-number" data-target="109+">109+</span>
+            <span class="stat-label">פרקים</span>
+        </div>
+        <div class="stat reveal" data-delay="2">
+            <span class="stat-number" data-target="31K+">31K+</span>
+            <span class="stat-label">עוקבים</span>
         </div>
     </section>
 
-    <!-- Podcast -->
-    <section class="section" data-section="podcast" id="podcast" aria-labelledby="podcast-title">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">פודקאסט</p>
-                <h2 class="section-title" id="podcast-title">להפרד לשלום</h2>
+    <!-- I — Law -->
+    <section class="chapter" id="law" aria-labelledby="law-title">
+        <p class="chapter-folio reveal">I</p>
+        <h2 class="chapter-title reveal" id="law-title" data-delay="1">משפטים</h2>
+        <p class="chapter-lead reveal" data-delay="2">עורך דין ונוטריון, כמעט עשרים שנה בעיסוק.</p>
+
+        <div class="chapter-areas reveal" data-delay="3">
+            <div class="chapter-area">
+                <h3>משפט מסחרי</h3>
+                <p>בנקאות, אשראי, ליטיגציה וכינוסי נכסים. ייעוץ משפטי שוטף לעסקים ולבעלי עסקים.</p>
             </div>
+            <div class="chapter-area">
+                <h3>משפחה</h3>
+                <p>ייצוג, ליווי וגישור בהליכי גירושין. צוואות ותכנון כלכלי משפחתי.</p>
+            </div>
+        </div>
 
-            <div class="podcast-grid">
-                <div class="podcast-info">
-                    <h3>שיחות על מה שחשוב</h3>
-                    <p>מסע אל תוך עולמות הזוגיות, האהבה והקשרים האנושיים. שיחות עומק עם אנשים מעניינים - פוליטיקאים, סופרים, פסיכולוגים, יזמים. על מה שמחבר אותנו, ומה שלפעמים מפריד.</p>
+        <a href="https://www.simon-law.co.il" target="_blank" rel="noopener" class="chapter-link reveal" data-delay="4"><span class="latin">simon-law.co.il</span></a>
+    </section>
 
-                    <div class="podcast-stats">
-                        <div class="podcast-stat">
-                            <span>109+</span>
-                            <span>פרקים</span>
-                        </div>
-                        <div class="podcast-stat">
-                            <span>5.0</span>
-                            <span>דירוג</span>
-                        </div>
+    <!-- II — Mediation -->
+    <section class="chapter" id="mediation" aria-labelledby="mediation-title">
+        <p class="chapter-folio reveal">II</p>
+        <h2 class="chapter-title reveal" id="mediation-title" data-delay="1">
+            גישור גירושין
+            <small>להפרד לשלום</small>
+        </h2>
+        <p class="chapter-supporting reveal" data-delay="2">
+            תהליך לזוגות שבחרו להיפרד בלי בית משפט — סיום המסע המשותף בהסכם הוגן ששומר על שני הצדדים, ובמיוחד על הילדים.
+        </p>
+        <p class="chapter-supporting reveal" data-delay="3">
+            כל המידע על התהליך, על העלות, ועל המסגרת — באתר הייעודי.
+        </p>
+        <a href="https://www.good-bye.co.il" target="_blank" rel="noopener" class="chapter-link reveal" data-delay="4"><span class="latin">good-bye.co.il</span></a>
+    </section>
+
+    <!-- III — Business -->
+    <section class="chapter" id="business" aria-labelledby="business-title">
+        <p class="chapter-folio reveal">III</p>
+        <h2 class="chapter-title reveal" id="business-title" data-delay="1">ייעוץ וליווי עסקי</h2>
+        <p class="chapter-lead reveal" data-delay="2">
+            ליווי ארוך טווח לבעלי עסקים. שילוב של חשיבה כלכלית, הבנה משפטית וניסיון מעשי בשטח.
+        </p>
+
+        <ol class="chapter-list reveal" data-delay="3">
+            <li>תכנית עסקית והקמת עסק</li>
+            <li>ניהול אשראי ותזרים מזומנים</li>
+            <li>ייעוץ שוטף בקבלת החלטות</li>
+            <li>עסקים בקשיים והליכי חדלות פירעון</li>
+        </ol>
+    </section>
+
+    <!-- IV — Personal -->
+    <section class="chapter" id="personal" aria-labelledby="personal-title">
+        <p class="chapter-folio reveal">IV</p>
+        <h2 class="chapter-title reveal" id="personal-title" data-delay="1">ייעוץ וליווי אישי</h2>
+        <p class="chapter-lead reveal" data-delay="2">מרחב להתבוננות פנימה.</p>
+        <p class="chapter-supporting reveal" data-delay="3">
+            שיחות אחד-על-אחד שמאפשרות הקשבה והחזקה — מתן מקום לעולם הפנימי בלי ביקורת ובלי שיפוטיות. אין מתודה ואין קואצ׳ינג, ולא בית מרקחת לפתרונות. רק נוכחות, וזמן.
+        </p>
+        <p class="chapter-disclaimer reveal" data-delay="4">
+            זה אינו תחליף לטיפול נפשי. במצבים שמצריכים סיוע מקצועי — חשוב לפנות לאיש מקצוע מתאים.
+        </p>
+    </section>
+
+    <!-- V — Lectures -->
+    <section class="chapter" id="lectures" aria-labelledby="lectures-title">
+        <p class="chapter-folio reveal">V</p>
+        <h2 class="chapter-title reveal" id="lectures-title" data-delay="1">הרצאות</h2>
+        <p class="chapter-lead reveal" data-delay="2">לקהלים, לארגונים ולכנסים.</p>
+
+        <div class="topic-grid reveal" data-delay="3">
+            <article class="topic">
+                <h3><span class="topic-num">№ I</span>גיאופוליטיקה והסדר העולמי החדש</h3>
+                <p>שינויי כוח, גושים ואינטרסים, והקריאה של מה שעשוי לבוא.</p>
+            </article>
+            <article class="topic">
+                <h3><span class="topic-num">№ II</span>בינה מלאכותית — הפוטנציאל והסכנה</h3>
+                <p>מה כבר כאן, מה בדרך, ואיך להיערך — מבלי להתלהב יתר על המידה ובלי להיבהל.</p>
+            </article>
+            <article class="topic">
+                <h3><span class="topic-num">№ III</span>תכנון כלכלי משפחתי לעתיד</h3>
+                <p>איך משפחות בונות עתיד פיננסי יציב — בין דורות, בין נכסים, בין החלטות גדולות.</p>
+            </article>
+            <article class="topic">
+                <h3><span class="topic-num">№ IV</span>עסקים משפחתיים ודור ההמשך</h3>
+                <p>שמירה על הסיפור המשפחתי בתוך עסק שצריך להמשיך לתפקד.</p>
+            </article>
+        </div>
+
+        <a href="#contact" class="chapter-link reveal" data-delay="4">להזמנת הרצאה</a>
+    </section>
+
+    <!-- VI — Podcast -->
+    <section class="chapter" id="podcast" aria-labelledby="podcast-title">
+        <p class="chapter-folio reveal">VI</p>
+        <h2 class="chapter-title reveal" id="podcast-title" data-delay="1">
+            להפרד לשלום
+            <small>פודקאסט שיחות עומק</small>
+        </h2>
+
+        <div class="podcast-grid">
+            <div class="reveal" data-delay="2">
+                <p class="chapter-supporting">
+                    מרחב אינטימי למסע אינטלקטואלי ורגשי אל תוך עולמות הזוגיות, האהבה והקשרים האנושיים. שיחות עם אנשים מעניינים — על מה שמחבר אותנו, ומה שלפעמים מפריד.
+                </p>
+
+                <div class="podcast-meta">
+                    <div class="podcast-meta-item">
+                        <span class="podcast-meta-num">109+</span>
+                        <span class="podcast-meta-label">פרקים</span>
                     </div>
-
-                    <a href="https://open.spotify.com/show/2T79RNlZ6Ujj3RdE3Av3A6" target="_blank" rel="noopener" class="role-link">האזינו בספוטיפיי →</a>
+                    <div class="podcast-meta-item">
+                        <span class="podcast-meta-num">10K+</span>
+                        <span class="podcast-meta-label">האזנות</span>
+                    </div>
                 </div>
 
+                <a href="https://open.spotify.com/show/2T79RNlZ6Ujj3RdE3Av3A6" target="_blank" rel="noopener" class="chapter-link">האזינו בספוטיפיי</a>
+            </div>
+
+            <div class="reveal" data-delay="3">
+                <p class="episodes-label">פרקים אחרונים</p>
                 <div class="episodes">
-                    <h4>פרקים אחרונים</h4>
                     <div class="episode">
-                        <span class="episode-title">נועם בשתאוי - מהמטבח לשוק ההון</span>
-                        <span class="episode-meta">109</span>
+                        <span class="episode-title">נועם בשתאוי — מהמטבח לשוק ההון</span>
+                        <span class="episode-num">№ 109</span>
                     </div>
                     <div class="episode">
-                        <span class="episode-title">חן זיו - לצאת מדעתנו בשלווה</span>
-                        <span class="episode-meta">108</span>
+                        <span class="episode-title">חן זיו — לצאת מדעתנו בשלווה</span>
+                        <span class="episode-num">№ 108</span>
                     </div>
                     <div class="episode">
-                        <span class="episode-title">גאיה חליפה ז"ל</span>
-                        <span class="episode-meta">107</span>
+                        <span class="episode-title">גאיה חליפה ז״ל</span>
+                        <span class="episode-num">№ 107</span>
                     </div>
                     <div class="episode">
-                        <span class="episode-title">ח"כ נאור שירי - מאחורי הפוליטיקה</span>
-                        <span class="episode-meta">106</span>
+                        <span class="episode-title">ח״כ נאור שירי — מאחורי הפוליטיקה</span>
+                        <span class="episode-num">№ 106</span>
                     </div>
                     <div class="episode">
-                        <span class="episode-title">ליאת רוטנר - בארץ הפלאות</span>
-                        <span class="episode-meta">104</span>
+                        <span class="episode-title">ליאת רוטנר — בארץ הפלאות</span>
+                        <span class="episode-num">№ 104</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TikTok / Content -->
-    <section class="section" data-section="content" id="content" aria-labelledby="content-title">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">תוכן</p>
-                <h2 class="section-title" id="content-title">גיאופוליטיקה וכלכלה</h2>
+    <!-- VII — TikTok -->
+    <section class="chapter" id="tiktok" aria-labelledby="tiktok-title">
+        <p class="chapter-folio reveal">VII</p>
+        <h2 class="chapter-title reveal" id="tiktok-title" data-delay="1">טיקטוק</h2>
+        <p class="tiktok-subtitle reveal" data-delay="2">
+            מעל שלושים אלף עוקבים, מיליוני צפיות. כלכלה, גיאופוליטיקה, בינה מלאכותית — וגם פילוסופיה.
+        </p>
+
+        <p class="series-label reveal" data-delay="3">סדרות תוכן</p>
+        <div class="playlists reveal" data-delay="3">
+            <div class="playlist">
+                <div class="playlist-title">בראשית AI</div>
+                <div class="playlist-meta">6 פרקים</div>
             </div>
-
-            <div class="tiktok-content">
-                <h3>מה שאחרים לא אומרים</h3>
-                <p>תוכן יומיומי על מה שקורה בעולם. לוקח נושאים מורכבים ועושה אותם פשוטים. איראן, ריבית, מזרח תיכון, בינה מלאכותית - בלי פילטרים.</p>
-
-                <div class="tiktok-stats">
-                    <div class="tiktok-stat">
-                        <span>31.4K</span>
-                        <span>עוקבים</span>
-                    </div>
-                    <div class="tiktok-stat">
-                        <span>363K</span>
-                        <span>לייקים</span>
-                    </div>
-                </div>
-
-                <h4 style="font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 24px;">סדרות תוכן</h4>
-                <div class="playlists">
-                    <div class="playlist">
-                        <div class="playlist-title">בראשית AI</div>
-                        <div class="playlist-count">6 פרקים</div>
-                    </div>
-                    <div class="playlist">
-                        <div class="playlist-title">ההגירה לאירופה</div>
-                        <div class="playlist-count">9 פרקים</div>
-                    </div>
-                    <div class="playlist">
-                        <div class="playlist-title">המזרח הקדום</div>
-                        <div class="playlist-count">8 פרקים</div>
-                    </div>
-                    <div class="playlist">
-                        <div class="playlist-title">אגרות חוב</div>
-                        <div class="playlist-count">8 פרקים</div>
-                    </div>
-                    <div class="playlist">
-                        <div class="playlist-title">שוויץ</div>
-                        <div class="playlist-count">5 פרקים</div>
-                    </div>
-                    <div class="playlist">
-                        <div class="playlist-title">חברה בע"מ</div>
-                        <div class="playlist-count">2 פרקים</div>
-                    </div>
-                </div>
-
-                <div class="topics">
-                    <span class="topic">גיאופוליטיקה</span>
-                    <span class="topic">כלכלה</span>
-                    <span class="topic">איראן</span>
-                    <span class="topic">מזרח תיכון</span>
-                    <span class="topic">ריבית</span>
-                    <span class="topic">שוק ההון</span>
-                    <span class="topic">בינה מלאכותית</span>
-                </div>
+            <div class="playlist">
+                <div class="playlist-title">ההגירה לאירופה</div>
+                <div class="playlist-meta">9 פרקים</div>
+            </div>
+            <div class="playlist">
+                <div class="playlist-title">המזרח הקדום</div>
+                <div class="playlist-meta">8 פרקים</div>
+            </div>
+            <div class="playlist">
+                <div class="playlist-title">אגרות חוב</div>
+                <div class="playlist-meta">8 פרקים</div>
+            </div>
+            <div class="playlist">
+                <div class="playlist-title">שוויץ</div>
+                <div class="playlist-meta">5 פרקים</div>
+            </div>
+            <div class="playlist">
+                <div class="playlist-title">חברה בע״מ</div>
+                <div class="playlist-meta">2 פרקים</div>
             </div>
         </div>
-    </section>
 
-    <!-- Links -->
-    <section class="section" data-section="links" id="links" aria-labelledby="links-title">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">קישורים</p>
-                <h2 class="section-title" id="links-title">הכל במקום אחד</h2>
-            </div>
-
-            <nav class="links-grid" aria-label="קישורים חיצוניים">
-                <a href="https://www.simon-law.co.il" target="_blank" rel="noopener" class="link-item">
-                    <div class="link-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                    </div>
-                    <div>
-                        <div class="link-text">משרד עו"ד</div>
-                        <div class="link-sub">simon-law.co.il</div>
-                    </div>
-                </a>
-                <a href="https://www.good-bye.co.il" target="_blank" rel="noopener" class="link-item">
-                    <div class="link-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                    </div>
-                    <div>
-                        <div class="link-text">להפרד לשלום</div>
-                        <div class="link-sub">גישור גירושין</div>
-                    </div>
-                </a>
-                <a href="https://open.spotify.com/show/2T79RNlZ6Ujj3RdE3Av3A6" target="_blank" rel="noopener" class="link-item">
-                    <div class="link-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-                    </div>
-                    <div>
-                        <div class="link-text">פודקאסט</div>
-                        <div class="link-sub">Spotify</div>
-                    </div>
-                </a>
-                <a href="https://www.instagram.com/nivsimon.space/" target="_blank" rel="noopener" class="link-item">
-                    <div class="link-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                    </div>
-                    <div>
-                        <div class="link-text">Instagram</div>
-                        <div class="link-sub">@nivsimon.space</div>
-                    </div>
-                </a>
-                <a href="https://www.tiktok.com/@nivsimon_goodbye" target="_blank" rel="noopener" class="link-item">
-                    <div class="link-icon">
-                        <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
-                    </div>
-                    <div>
-                        <div class="link-text">TikTok</div>
-                        <div class="link-sub">@nivsimon_goodbye</div>
-                    </div>
-                </a>
-            </nav>
+        <div class="topics reveal" data-delay="4">
+            <span class="topic-tag">גיאופוליטיקה</span>
+            <span class="topic-tag">כלכלה</span>
+            <span class="topic-tag">בינה מלאכותית</span>
+            <span class="topic-tag">מזרח תיכון</span>
+            <span class="topic-tag">שוק ההון</span>
+            <span class="topic-tag">פילוסופיה</span>
         </div>
+
+        <a href="https://www.tiktok.com/@nivsimon_goodbye" target="_blank" rel="noopener" class="chapter-link reveal" data-delay="4"><span class="latin">@nivsimon_goodbye</span></a>
     </section>
 
-    <!-- CTA -->
-    <section class="cta">
-        <div class="container">
-            <h2>בואו נדבר</h2>
-            <a href="https://wa.me/972507357352" class="whatsapp-btn">
-                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                וואטסאפ
+    <!-- VIII — Software -->
+    <section class="chapter" id="software" aria-labelledby="software-title">
+        <p class="chapter-folio reveal">VIII</p>
+        <h2 class="chapter-title reveal" id="software-title" data-delay="1">אפליקציות AI</h2>
+        <p class="chapter-supporting reveal" data-delay="2">
+            פיתוח ושיווק אפליקציות מבוססות בינה מלאכותית. אלה מוצרים שאני בונה — לא שירותי ייעוץ.
+        </p>
+
+        <div class="products reveal" data-delay="3">
+            <a href="https://withwinston.com" target="_blank" rel="noopener" class="product">
+                <span class="product-num">№ 01</span>
+                <span class="product-name latin">withwinston.com</span>
+                <span class="product-arrow">בקרו במוצר →</span>
+            </a>
+            <a href="https://talktograham.com" target="_blank" rel="noopener" class="product">
+                <span class="product-num">№ 02</span>
+                <span class="product-name latin">talktograham.com</span>
+                <span class="product-arrow">בקרו במוצר →</span>
             </a>
         </div>
     </section>
 
+    <!-- IX — Contact -->
+    <section class="chapter" id="contact" aria-labelledby="contact-title">
+        <p class="chapter-folio reveal">IX</p>
+        <h2 class="chapter-title reveal" id="contact-title" data-delay="1">יצירת קשר</h2>
+        <p class="contact-intro reveal" data-delay="2">
+            הזמן שלי מצומצם ואני מגיב לפניות ממוקדות. אם אתם יודעים בדיוק במה מדובר — בחרו את הכתובת המתאימה. אם לא — דלגו ישר ל&laquo;כל השאר&raquo;.
+        </p>
+
+        <ul class="routes reveal" data-delay="3">
+            <li class="route">
+                <span class="route-label">לקוחות משפט</span>
+                <a href="https://www.simon-law.co.il" target="_blank" rel="noopener" class="route-target latin">simon-law.co.il →</a>
+            </li>
+            <li class="route">
+                <span class="route-label">גישור גירושין</span>
+                <a href="https://www.good-bye.co.il" target="_blank" rel="noopener" class="route-target latin">good-bye.co.il →</a>
+            </li>
+            <li class="route">
+                <span class="route-label">הזמנת הרצאה</span>
+                <a href="mailto:niv@simon-law.co.il?subject=הזמנת%20הרצאה&body=תאריך%3A%20%0Aקהל%3A%20%0Aנושא%3A%20%0Aמסגרת%3A%20" class="route-target latin">niv@simon-law.co.il →</a>
+            </li>
+            <li class="route">
+                <span class="route-label">ליווי עסקי</span>
+                <a href="mailto:niv@simon-law.co.il?subject=ליווי%20עסקי" class="route-target latin">niv@simon-law.co.il →</a>
+            </li>
+            <li class="route">
+                <span class="route-label">ליווי אישי</span>
+                <a href="mailto:niv@simon-law.co.il?subject=ליווי%20אישי" class="route-target latin">niv@simon-law.co.il →</a>
+            </li>
+            <li class="route">
+                <span class="route-label">שיתופי פעולה ופניות תקשורת</span>
+                <a href="mailto:niv@simon-law.co.il?subject=שיתוף%20פעולה" class="route-target latin">niv@simon-law.co.il →</a>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Catchall -->
+    <aside class="catchall" aria-label="צרו קשר בוואטסאפ">
+        <div class="catchall-folio">X</div>
+        <div class="catchall-inner">
+            <p class="catchall-eyebrow reveal">כל השאר</p>
+            <h2 class="catchall-title reveal" data-delay="1">פתחו שיחה <em>בוואטסאפ</em></h2>
+            <p class="catchall-body reveal" data-delay="2">
+                הציגו את עצמכם, נסחו את הבקשה במשפט אחד.
+                בפנייה ראשונה — בלי הודעות קוליות.
+            </p>
+            <a href="https://wa.me/972507357352" target="_blank" rel="noopener" class="catchall-btn reveal" data-delay="3">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span>שלחו הודעה</span>
+            </a>
+        </div>
+    </aside>
+
     <!-- Footer -->
     <footer class="footer">
-        <p>ניב סימון · תל אביב · ציריך</p>
+        <div class="footer-inner">
+            <p class="colophon">תל אביב — ציריך</p>
+            <p class="footer-mark">ניב סימון</p>
+            <nav class="footer-social" aria-label="רשתות חברתיות">
+                <a href="https://open.spotify.com/show/2T79RNlZ6Ujj3RdE3Av3A6" target="_blank" rel="noopener">Spotify</a>
+                <a href="https://www.instagram.com/nivsimon.space/" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://www.tiktok.com/@nivsimon_goodbye" target="_blank" rel="noopener">TikTok</a>
+            </nav>
+        </div>
     </footer>
 
-
-    <!-- Navigation Wheel - Accessible Navigation -->
-    <nav class="nav-wheel" aria-label="ניווט מהיר בין חלקי הדף">
-        <div class="wheel-container" id="wheelContainer">
-            <div class="wheel-ring"></div>
-
-            <!-- Labels container that rotates -->
-            <div class="wheel-labels" id="wheelLabels">
-                <span class="wheel-label" data-section="hero" data-index="0">ניב סימון</span>
-                <span class="wheel-label" data-section="roles" data-index="1">תחומים</span>
-                <span class="wheel-label" data-section="podcast" data-index="2">פודקאסט</span>
-                <span class="wheel-label" data-section="content" data-index="3">תוכן</span>
-                <span class="wheel-label" data-section="links" data-index="4">קישורים</span>
-            </div>
-
-            <!-- Center Photo -->
-            <div class="wheel-photo">
-                <img src="https://static.wixstatic.com/media/415d0e_33ceb576e08e4525909aea9cde01157e~mv2.jpg/v1/fill/w_200,h_200,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_20201026_143528_edited.jpg" alt="ניב סימון">
-            </div>
-
-            <!-- Pointer indicator -->
-            <div class="wheel-pointer"></div>
-        </div>
-    </nav>
-
     <script>
-        // Sections configuration
-        const sections = [
-            { id: 'hero', element: document.querySelector('[data-section="hero"]'), index: 0 },
-            { id: 'roles', element: document.querySelector('[data-section="roles"]'), index: 1 },
-            { id: 'podcast', element: document.querySelector('[data-section="podcast"]'), index: 2 },
-            { id: 'content', element: document.querySelector('[data-section="content"]'), index: 3 },
-            { id: 'links', element: document.querySelector('[data-section="links"]'), index: 4 }
-        ];
-
-        const wheelLabelElements = document.querySelectorAll('.wheel-label');
-        let currentSectionIndex = -1;
-
-        // Arc radius and pointer position (pointer is at center-left of wheel)
-        const radius = 85;
-        const pointerAngle = 180; // Pointer is at left side (180 degrees)
-        const angleStep = 25; // Degrees between each label on the arc
-
-        function positionLabels(activeIndex) {
-            wheelLabelElements.forEach((label, i) => {
-                // Calculate angle: active label at pointer, others spread on arc
-                const offsetFromActive = i - activeIndex;
-                const angle = pointerAngle + (offsetFromActive * angleStep);
-                const angleRad = (angle * Math.PI) / 180;
-
-                // Calculate position on circle
-                const x = Math.cos(angleRad) * radius;
-                const y = Math.sin(angleRad) * radius;
-
-                // Apply transform (from center of wheel)
-                label.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
-
-                // Update classes
-                label.classList.remove('active', 'adjacent', 'visible');
-
-                if (offsetFromActive === 0) {
-                    label.classList.add('active', 'visible');
-                } else if (Math.abs(offsetFromActive) === 1) {
-                    label.classList.add('adjacent', 'visible');
-                } else if (Math.abs(offsetFromActive) === 2) {
-                    label.classList.add('visible');
-                    label.style.opacity = '0.3';
-                }
-            });
-        }
-
-        function updateWheel() {
-            const windowHeight = window.innerHeight;
-
-            // Find current section based on scroll position
-            let activeSection = sections[0];
-
-            for (let i = sections.length - 1; i >= 0; i--) {
-                const section = sections[i];
-                if (section.element) {
-                    const rect = section.element.getBoundingClientRect();
-                    if (rect.top <= windowHeight * 0.4) {
-                        activeSection = section;
-                        break;
-                    }
-                }
-            }
-
-            // Only update if section changed
-            if (currentSectionIndex !== activeSection.index) {
-                currentSectionIndex = activeSection.index;
-                positionLabels(currentSectionIndex);
-            }
-        }
-
-        // Throttled scroll event
+        // Reading progress
+        const progress = document.querySelector('.progress');
         let ticking = false;
+        const updateProgress = () => {
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            const ratio = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+            progress.style.setProperty('--p', (ratio * 100).toFixed(2) + '%');
+            ticking = false;
+        };
         window.addEventListener('scroll', () => {
             if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    updateWheel();
-                    ticking = false;
-                });
+                requestAnimationFrame(updateProgress);
                 ticking = true;
             }
-        });
+        }, { passive: true });
+        updateProgress();
 
-        // Initial update
-        updateWheel();
-
-        // Click to navigate
-        wheelLabelElements.forEach(label => {
-            label.addEventListener('click', () => {
-                const sectionId = label.dataset.section;
-                const section = sections.find(s => s.id === sectionId);
-                if (section && section.element) {
-                    section.element.scrollIntoView({ behavior: 'smooth' });
-                }
+        // Top nav appearance
+        const topnav = document.querySelector('.topnav');
+        const hero = document.getElementById('hero');
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                topnav.classList.toggle('visible', !entry.isIntersecting);
             });
-        });
-    </script>
+        }, { threshold: 0, rootMargin: '-72px 0px 0px 0px' });
+        navObserver.observe(hero);
 
+        // Mobile menu
+        const toggle = document.querySelector('.topnav-toggle');
+        const panel = document.getElementById('topnav-panel');
+        const closeMenu = () => {
+            toggle.classList.remove('open');
+            panel.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+            panel.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        };
+        const openMenu = () => {
+            toggle.classList.add('open');
+            panel.classList.add('open');
+            toggle.setAttribute('aria-expanded', 'true');
+            panel.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        };
+        toggle.addEventListener('click', () => {
+            if (toggle.classList.contains('open')) closeMenu();
+            else openMenu();
+        });
+        panel.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => closeMenu());
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && toggle.classList.contains('open')) closeMenu();
+        });
+
+        // Reveal on scroll
+        const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduceMotion) {
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('shown');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+        } else {
+            document.querySelectorAll('.reveal').forEach(el => el.classList.add('shown'));
+        }
+
+        // Stat numerals: count once on first reveal
+        const parseTarget = (s) => {
+            const m = s.match(/^(\d+(?:\.\d+)?)([MK])?\+?$/);
+            if (!m) return null;
+            const n = parseFloat(m[1]);
+            const unit = m[2] || '';
+            return { n, unit };
+        };
+        const formatTarget = (val, unit) => {
+            if (unit === 'M') return (val < 10 ? val.toFixed(1) : Math.round(val)) + 'M+';
+            if (unit === 'K') return Math.round(val) + 'K+';
+            return Math.round(val) + '+';
+        };
+        const animateCount = (el) => {
+            const target = el.dataset.target;
+            const parsed = parseTarget(target);
+            if (!parsed) return;
+            const duration = 1100;
+            const start = performance.now();
+            const tick = (now) => {
+                const t = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - t, 3);
+                const cur = parsed.n * eased;
+                el.textContent = formatTarget(cur, parsed.unit);
+                if (t < 1) requestAnimationFrame(tick);
+                else el.textContent = target;
+            };
+            requestAnimationFrame(tick);
+        };
+
+        if (!reduceMotion) {
+            const statObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCount(entry.target);
+                        statObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.6 });
+            document.querySelectorAll('.stat-number').forEach(el => statObserver.observe(el));
+        }
+    </script>
 
 </body>
 </html>
