@@ -9,6 +9,19 @@
     <meta property="og:title" content="ניב סימון">
     <meta property="og:description" content="עורך דין ונוטריון. מלווה עסקים ומשפחות עשרים שנה.">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="https://static.wixstatic.com/media/415d0e_33ceb576e08e4525909aea9cde01157e~mv2.jpg/v1/fill/w_1200,h_1200,al_c,q_90,enc_avif,quality_auto/IMG_20201026_143528_edited.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    <meta property="og:image:alt" content="ניב סימון">
+    <meta property="og:url" content="https://nivsimon.co.il/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ניב סימון">
+    <meta name="twitter:description" content="עורך דין ונוטריון. מלווה עסקים ומשפחות עשרים שנה.">
+    <meta name="twitter:image" content="https://static.wixstatic.com/media/415d0e_33ceb576e08e4525909aea9cde01157e~mv2.jpg/v1/fill/w_1200,h_1200,al_c,q_90,enc_avif,quality_auto/IMG_20201026_143528_edited.jpg">
+
+    <!-- Favicon (uses portrait) -->
+    <link rel="icon" type="image/jpeg" href="https://static.wixstatic.com/media/415d0e_33ceb576e08e4525909aea9cde01157e~mv2.jpg/v1/fill/w_64,h_64,al_c,q_85,enc_avif,quality_auto/IMG_20201026_143528_edited.jpg">
+    <link rel="apple-touch-icon" href="https://static.wixstatic.com/media/415d0e_33ceb576e08e4525909aea9cde01157e~mv2.jpg/v1/fill/w_192,h_192,al_c,q_85,enc_avif,quality_auto/IMG_20201026_143528_edited.jpg">
 
     <!-- Fonts: Assistant (humanist Hebrew sans) + Heebo (geometric sans for labels) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,6 +72,25 @@
 
             --serif: 'Assistant', 'Open Sans Hebrew', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
             --sans:  'Heebo', 'Assistant', 'Open Sans Hebrew', 'Arial Hebrew', -apple-system, system-ui, sans-serif;
+
+            /* Type roles — 4 only */
+            --t-title-size:    clamp(2.4rem, 9vw, 5.4rem);
+            --t-title-weight:  700;
+            --t-title-line:    1;
+            --t-title-track:   -0.035em;
+
+            --t-subtitle-size:   clamp(1.3rem, 2.2vw, 1.7rem);
+            --t-subtitle-weight: 600;
+            --t-subtitle-line:   1.4;
+
+            --t-text-size:    1rem;
+            --t-text-weight:  400;
+            --t-text-line:    1.65;
+
+            --t-link-size:   0.7rem;
+            --t-link-weight: 500;
+            --t-link-track:  0.2em;
+            --t-link-line:   1.4;
 
             --pad-x: clamp(20px, 5vw, 96px);
             --max-w: 1320px;
@@ -159,8 +191,8 @@
 
         .topnav-mark {
             font-family: var(--serif);
-            font-size: 1rem;
-            font-weight: 500;
+            font-size: var(--t-text-size);
+            font-weight: 600;
             color: var(--ink);
             letter-spacing: 0.01em;
         }
@@ -173,8 +205,9 @@
         }
         .topnav-list a {
             font-family: var(--sans);
-            font-size: 0.7rem;
-            letter-spacing: 0.18em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--muted);
             transition: color 0.25s ease;
@@ -183,8 +216,9 @@
 
         .topnav-cta {
             font-family: var(--sans);
-            font-size: 0.7rem;
-            letter-spacing: 0.24em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--ink);
             border-bottom: 1px solid var(--ink);
@@ -249,15 +283,17 @@
             gap: 24px;
             padding: 22px 0;
             font-family: var(--serif);
-            font-size: 1.5rem;
-            font-weight: 500;
+            font-size: var(--t-subtitle-size);
+            font-weight: var(--t-subtitle-weight);
+            line-height: var(--t-subtitle-line);
             color: var(--ink);
         }
         .topnav-panel a::after {
             content: attr(data-num);
             font-family: var(--sans);
-            font-size: 0.65rem;
-            letter-spacing: 0.18em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             color: var(--muted);
         }
         .topnav-panel-foot {
@@ -271,15 +307,8 @@
         .topnav-panel-foot p {
             font-family: var(--serif);
             font-style: italic;
-            font-size: 0.85rem;
+            font-size: var(--t-text-size);
             color: var(--muted);
-        }
-        .topnav-panel-foot .latin {
-            font-family: var(--sans);
-            font-size: 0.7rem;
-            letter-spacing: 0.18em;
-            color: var(--ink);
-            text-transform: uppercase;
         }
 
         @media (max-width: 980px) {
@@ -300,8 +329,9 @@
         .hero-meta {
             text-align: center;
             font-family: var(--sans);
-            font-size: 0.7rem;
-            letter-spacing: 0.32em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--muted);
             margin-bottom: 36px;
@@ -324,10 +354,10 @@
         }
         .hero-name {
             font-family: var(--serif);
-            font-weight: 700;
-            font-size: clamp(3rem, 19vw, 8.5rem);
-            line-height: 0.95;
-            letter-spacing: -0.04em;
+            font-size: var(--t-title-size);
+            font-weight: var(--t-title-weight);
+            line-height: var(--t-title-line);
+            letter-spacing: var(--t-title-track);
             color: var(--ink);
             margin-bottom: clamp(40px, 6vh, 64px);
         }
@@ -355,8 +385,9 @@
         }
         .hero-tagline {
             font-family: var(--serif);
-            font-size: clamp(1.35rem, 1.9vw, 1.55rem);
-            line-height: 1.55;
+            font-size: var(--t-subtitle-size);
+            font-weight: 400;
+            line-height: var(--t-subtitle-line);
             color: var(--muted);
             max-width: 36ch;
             margin: 0 auto clamp(36px, 5vh, 56px);
@@ -380,16 +411,17 @@
         }
         .hero-quote blockquote {
             font-family: var(--serif);
-            font-size: clamp(1.7rem, 2.85vw, 2.35rem);
-            line-height: 1.4;
+            font-size: var(--t-subtitle-size);
+            line-height: var(--t-subtitle-line);
             font-style: italic;
             font-weight: 400;
             color: var(--ink);
         }
         .hero-quote figcaption {
             font-family: var(--sans);
-            font-size: 0.7rem;
-            letter-spacing: 0.28em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--muted);
             margin-top: 18px;
@@ -417,18 +449,19 @@
         .stat-number {
             display: block;
             font-family: var(--serif);
-            font-weight: 700;
-            font-size: clamp(1.6rem, 8vw, 5.5rem);
-            letter-spacing: -0.03em;
-            line-height: 1;
+            font-size: var(--t-title-size);
+            font-weight: var(--t-title-weight);
+            line-height: var(--t-title-line);
+            letter-spacing: var(--t-title-track);
             color: var(--ink);
             font-variant-numeric: tabular-nums lining-nums;
         }
         .stat-label {
             display: block;
             font-family: var(--sans);
-            font-size: clamp(0.55rem, 1.6vw, 0.72rem);
-            letter-spacing: 0.32em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--muted);
             margin-top: clamp(10px, 1.6vh, 22px);
@@ -449,9 +482,9 @@
         }
         .toc a {
             font-family: var(--sans);
-            font-size: clamp(0.7rem, 1.1vw, 0.82rem);
-            font-weight: 300;
-            letter-spacing: 0.16em;
+            font-size: var(--t-link-size);
+            font-weight: 400;
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--muted);
             transition: color 0.25s ease;
@@ -477,12 +510,12 @@
             align-items: center;
             gap: 18px;
             font-family: var(--sans);
-            font-size: 0.72rem;
-            letter-spacing: 0.36em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--ink);
             margin-bottom: 28px;
-            font-weight: 500;
         }
         .chapter-folio::before {
             content: '';
@@ -493,22 +526,19 @@
 
         .chapter-title {
             font-family: var(--serif);
-            font-weight: 700;
-            font-size: clamp(2rem, 8vw, 4.8rem);
-            letter-spacing: -0.035em;
-            line-height: 1;
+            font-size: var(--t-title-size);
+            font-weight: var(--t-title-weight);
+            line-height: var(--t-title-line);
+            letter-spacing: var(--t-title-track);
             color: var(--ink);
             margin-bottom: clamp(20px, 3vh, 32px);
             max-width: 18ch;
         }
-        .chapter-title em {
-            font-style: italic;
-            color: var(--muted);
-        }
+        .chapter-title em { font-style: italic; color: var(--muted); }
         .chapter-title small {
             display: block;
-            font-size: 0.36em;
-            line-height: 1.3;
+            font-size: var(--t-subtitle-size);
+            line-height: var(--t-subtitle-line);
             font-weight: 400;
             font-style: italic;
             color: var(--muted);
@@ -518,18 +548,19 @@
 
         .chapter-lead {
             font-family: var(--serif);
-            font-size: clamp(1.4rem, 2vw, 1.75rem);
-            line-height: 1.5;
+            font-size: var(--t-subtitle-size);
+            font-weight: var(--t-subtitle-weight);
+            line-height: var(--t-subtitle-line);
             color: var(--ink);
             max-width: 36ch;
             margin-bottom: 36px;
-            font-weight: 500;
         }
 
         .chapter-supporting {
             font-family: var(--serif);
-            font-size: 0.95rem;
-            line-height: 1.7;
+            font-size: var(--t-text-size);
+            font-weight: var(--t-text-weight);
+            line-height: var(--t-text-line);
             color: var(--muted);
             max-width: 60ch;
             margin-bottom: 20px;
@@ -539,8 +570,8 @@
         .chapter-disclaimer {
             font-family: var(--serif);
             font-style: italic;
-            font-size: 0.95rem;
-            line-height: 1.7;
+            font-size: var(--t-text-size);
+            line-height: var(--t-text-line);
             color: var(--muted);
             max-width: 50ch;
             border-top: 1px solid var(--rule);
@@ -554,8 +585,9 @@
             gap: 14px;
             margin-top: clamp(28px, 4vh, 48px);
             font-family: var(--sans);
-            font-size: 0.72rem;
-            letter-spacing: 0.32em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--ink);
             border-bottom: 1px solid var(--ink);
@@ -588,9 +620,9 @@
         }
         .chapter-area h3 {
             font-family: var(--sans);
-            font-weight: 500;
-            font-size: 0.72rem;
-            letter-spacing: 0.32em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--ink);
             padding-bottom: 14px;
@@ -599,8 +631,9 @@
         }
         .chapter-area p {
             font-family: var(--serif);
-            font-size: 0.95rem;
-            line-height: 1.7;
+            font-size: var(--t-text-size);
+            font-weight: var(--t-text-weight);
+            line-height: var(--t-text-line);
             color: var(--ink-soft);
         }
 
@@ -624,15 +657,17 @@
             padding: 22px 0;
             border-bottom: 1px solid var(--rule);
             font-family: var(--serif);
-            font-size: 1rem;
-            line-height: 1.5;
+            font-size: var(--t-text-size);
+            font-weight: var(--t-text-weight);
+            line-height: var(--t-text-line);
             color: var(--ink);
         }
         .chapter-list li::before {
             content: counter(item, decimal-leading-zero);
             font-family: var(--sans);
-            font-size: 0.7rem;
-            letter-spacing: 0.16em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             color: var(--muted);
             font-feature-settings: "tnum";
         }
@@ -649,26 +684,27 @@
         }
         .topic h3 {
             font-family: var(--serif);
-            font-weight: 700;
-            font-size: clamp(1.4rem, 2.3vw, 1.7rem);
+            font-size: var(--t-subtitle-size);
+            font-weight: var(--t-subtitle-weight);
+            line-height: var(--t-subtitle-line);
             letter-spacing: -0.01em;
             color: var(--ink);
             margin-bottom: 12px;
-            line-height: 1.25;
         }
         .topic h3 .topic-num {
             font-family: var(--sans);
-            font-size: 0.6rem;
-            letter-spacing: 0.16em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             color: var(--muted);
             display: block;
             margin-bottom: 10px;
-            font-weight: 400;
         }
         .topic p {
             font-family: var(--serif);
-            font-size: 0.92rem;
-            line-height: 1.6;
+            font-size: var(--t-text-size);
+            font-weight: var(--t-text-weight);
+            line-height: var(--t-text-line);
             color: var(--muted);
         }
         @media (max-width: 720px) {
@@ -692,24 +728,26 @@
         .podcast-meta-item { display: flex; flex-direction: column; }
         .podcast-meta-num {
             font-family: var(--serif);
-            font-size: clamp(1.85rem, 3.5vw, 2.75rem);
-            line-height: 1;
-            font-weight: 500;
+            font-size: var(--t-subtitle-size);
+            line-height: var(--t-subtitle-line);
+            font-weight: var(--t-subtitle-weight);
             color: var(--ink);
             font-variant-numeric: tabular-nums lining-nums;
         }
         .podcast-meta-label {
             font-family: var(--sans);
-            font-size: 0.65rem;
-            letter-spacing: 0.28em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--muted);
             margin-top: 12px;
         }
         .episodes-label {
             font-family: var(--sans);
-            font-size: 0.7rem;
-            letter-spacing: 0.32em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--muted);
             margin-bottom: 16px;
@@ -727,14 +765,16 @@
         }
         .episode-title {
             font-family: var(--serif);
-            font-size: 0.95rem;
-            line-height: 1.45;
+            font-size: var(--t-text-size);
+            font-weight: var(--t-text-weight);
+            line-height: var(--t-text-line);
             color: var(--ink);
         }
         .episode-num {
             font-family: var(--sans);
-            font-size: 0.65rem;
-            letter-spacing: 0.18em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             color: var(--muted);
             font-feature-settings: "tnum";
         }
@@ -760,16 +800,18 @@
 
         .tiktok-subtitle {
             font-family: var(--serif);
-            font-size: clamp(1.5rem, 2.4vw, 1.9rem);
-            line-height: 1.55;
+            font-size: var(--t-subtitle-size);
+            font-weight: var(--t-subtitle-weight);
+            line-height: var(--t-subtitle-line);
             color: var(--ink);
             max-width: 36ch;
             margin-bottom: 48px;
         }
         .series-label {
             font-family: var(--sans);
-            font-size: 0.7rem;
-            letter-spacing: 0.32em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--muted);
             margin-bottom: 14px;
@@ -791,15 +833,16 @@
         .playlist:first-child { border-top: none; }
         .playlist-title {
             font-family: var(--serif);
-            font-size: 1.05rem;
-            font-weight: 600;
+            font-size: var(--t-subtitle-size);
+            font-weight: var(--t-subtitle-weight);
             color: var(--ink);
             margin-bottom: 6px;
         }
         .playlist-meta {
             font-family: var(--sans);
-            font-size: 0.62rem;
-            letter-spacing: 0.22em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--muted);
         }
@@ -809,8 +852,9 @@
             gap: 8px 24px;
             margin-top: 36px;
             font-family: var(--sans);
-            font-size: 0.7rem;
-            letter-spacing: 0.22em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--muted);
         }
@@ -837,23 +881,26 @@
         .product:hover { background: var(--paper); }
         .product-num {
             font-family: var(--sans);
-            font-size: 0.62rem;
-            letter-spacing: 0.32em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--muted);
         }
         .product-name {
             font-family: var(--serif);
-            font-size: clamp(1.6rem, 3.2vw, 2.25rem);
-            font-weight: 700;
+            font-size: var(--t-subtitle-size);
+            font-weight: var(--t-subtitle-weight);
+            line-height: var(--t-subtitle-line);
             letter-spacing: -0.015em;
             color: var(--ink);
         }
         .product-arrow {
             margin-top: 8px;
             font-family: var(--sans);
-            font-size: 0.7rem;
-            letter-spacing: 0.32em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--muted);
             transition: color 0.25s;
@@ -869,12 +916,12 @@
            ====================================================== */
         .contact-intro {
             font-family: var(--serif);
-            font-size: clamp(1.4rem, 2.3vw, 1.7rem);
-            line-height: 1.55;
+            font-size: var(--t-subtitle-size);
+            font-weight: var(--t-subtitle-weight);
+            line-height: var(--t-subtitle-line);
             color: var(--ink);
             max-width: 56ch;
             margin-bottom: clamp(28px, 4vh, 48px);
-            font-weight: 500;
         }
         .routes {
             border-top: 1px solid var(--ink);
@@ -890,14 +937,16 @@
         }
         .route-label {
             font-family: var(--serif);
-            font-size: 1rem;
+            font-size: var(--t-subtitle-size);
+            font-weight: var(--t-subtitle-weight);
+            line-height: var(--t-subtitle-line);
             color: var(--ink);
-            font-weight: 600;
         }
         .route-target {
             font-family: var(--sans);
-            font-size: 0.7rem;
-            letter-spacing: 0.22em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--muted);
             transition: color 0.25s ease;
@@ -929,10 +978,11 @@
             gap: 16px;
             margin-bottom: 28px;
             font-family: var(--sans);
-            font-size: 0.65rem;
-            letter-spacing: 0.36em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
-            color: rgba(243, 239, 232, 0.65);
+            color: rgba(243, 239, 232, 0.7);
         }
         .catchall-folio::before,
         .catchall-folio::after {
@@ -947,28 +997,27 @@
         }
         .catchall-eyebrow {
             font-family: var(--sans);
-            font-size: 0.7rem;
-            letter-spacing: 0.42em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: rgba(243, 239, 232, 0.7);
             margin-bottom: 24px;
         }
         .catchall-title {
             font-family: var(--serif);
-            font-weight: 600;
-            font-size: clamp(2rem, 7vw, 4.4rem);
-            line-height: 1.05;
-            letter-spacing: -0.03em;
+            font-size: var(--t-title-size);
+            font-weight: var(--t-title-weight);
+            line-height: var(--t-title-line);
+            letter-spacing: var(--t-title-track);
             margin-bottom: 24px;
         }
-        .catchall-title em {
-            font-style: italic;
-            font-weight: 400;
-        }
+        .catchall-title em { font-style: italic; font-weight: var(--t-title-weight); }
         .catchall-body {
             font-family: var(--serif);
-            font-size: clamp(1.3rem, 1.75vw, 1.5rem);
-            line-height: 1.6;
+            font-size: var(--t-subtitle-size);
+            font-weight: 400;
+            line-height: var(--t-subtitle-line);
             max-width: 50ch;
             margin: 0 auto 40px;
             color: rgba(243, 239, 232, 0.85);
@@ -982,8 +1031,9 @@
             border: 1px solid rgba(243, 239, 232, 0.6);
             padding: 18px 40px;
             font-family: var(--sans);
-            font-size: 0.72rem;
-            letter-spacing: 0.32em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
             min-height: 48px;
@@ -1018,13 +1068,13 @@
         .colophon {
             font-family: var(--serif);
             font-style: italic;
-            font-size: 0.85rem;
+            font-size: var(--t-text-size);
             color: var(--muted);
         }
         .footer-mark {
             font-family: var(--serif);
-            font-size: 1.05rem;
-            font-weight: 700;
+            font-size: var(--t-subtitle-size);
+            font-weight: var(--t-subtitle-weight);
             color: var(--ink);
             text-align: center;
         }
@@ -1036,8 +1086,9 @@
         }
         .footer-social a {
             font-family: var(--sans);
-            font-size: 0.65rem;
-            letter-spacing: 0.32em;
+            font-size: var(--t-link-size);
+            font-weight: var(--t-link-weight);
+            letter-spacing: var(--t-link-track);
             text-transform: uppercase;
             color: var(--ink);
             border-bottom: 1px solid transparent;
@@ -1092,13 +1143,8 @@
            ====================================================== */
         @media (max-width: 600px) {
             body { font-size: 30px; }
-            .chapter-title { letter-spacing: -0.035em; }
-            .stat-number { font-size: 1.6rem; }
-            .stat-label { font-size: 0.5rem; letter-spacing: 0.18em; margin-top: 8px; }
             .stat { padding: 12px 6px; }
             .stat + .stat { border-inline-start-width: 1px; }
-            .topnav-mark { font-size: 0.95rem; }
-            .topnav-panel a { font-size: 1.4rem; padding: 20px 0; }
         }
     </style>
 </head>
@@ -1178,15 +1224,15 @@
          =================================================== -->
     <section class="stats" aria-label="נתונים">
         <div class="stat reveal">
-            <span class="stat-number" data-target="8M+">8M+</span>
-            <span class="stat-label">צפיות</span>
+            <span class="stat-number" data-target="20">20</span>
+            <span class="stat-label">שנות ניסיון</span>
         </div>
         <div class="stat reveal" data-delay="1">
-            <span class="stat-number" data-target="109+">109+</span>
-            <span class="stat-label">פרקים</span>
+            <span class="stat-number" data-target="100+">100+</span>
+            <span class="stat-label">פרקי פודקאסט</span>
         </div>
         <div class="stat reveal" data-delay="2">
-            <span class="stat-number" data-target="31K+">31K+</span>
+            <span class="stat-number" data-target="33K">33K</span>
             <span class="stat-label">עוקבים</span>
         </div>
     </section>
@@ -1260,12 +1306,9 @@
     <section class="chapter" id="personal" aria-labelledby="personal-title">
         <p class="chapter-folio reveal">IV</p>
         <h2 class="chapter-title reveal" id="personal-title" data-delay="1">ייעוץ וליווי אישי</h2>
-        <p class="chapter-lead reveal" data-delay="2">מרחב להתבוננות פנימה.</p>
+        <p class="chapter-lead reveal" data-delay="2">מרחב בטוח להתבוננות פנימה.</p>
         <p class="chapter-supporting reveal" data-delay="3">
-            שיחות אחד-על-אחד שמאפשרות הקשבה והחזקה — מתן מקום לעולם הפנימי בלי ביקורת ובלי שיפוטיות. אין מתודה ואין קואצ׳ינג, ולא בית מרקחת לפתרונות. רק נוכחות, וזמן.
-        </p>
-        <p class="chapter-disclaimer reveal" data-delay="4">
-            זה אינו תחליף לטיפול נפשי. במצבים שמצריכים סיוע מקצועי — חשוב לפנות לאיש מקצוע מתאים.
+            הקשבה, החזקה, מתן מקום לעולם הפנימי והרגשי בלי ביקורתיות ובלי שיפוטיות.
         </p>
     </section>
 
@@ -1357,7 +1400,7 @@
     <section class="chapter" id="tiktok" aria-labelledby="tiktok-title">
         <p class="chapter-folio reveal">VII</p>
         <h2 class="chapter-title reveal" id="tiktok-title" data-delay="1">
-            <a href="https://www.tiktok.com/@nivsimon_goodbye" target="_blank" rel="noopener" class="latin tiktok-link">@nivsimon_goodbye</a>
+            <a href="https://www.tiktok.com/@nivsimon_goodbye" target="_blank" rel="noopener" class="tiktok-link">טיקטוק</a>
         </h2>
         <p class="tiktok-subtitle reveal" data-delay="2">
             מעל שלושים אלף עוקבים, מיליוני צפיות. כלכלה, גיאופוליטיקה, בינה מלאכותית — וגם פילוסופיה.
@@ -1404,7 +1447,7 @@
     <!-- VIII — Software -->
     <section class="chapter" id="software" aria-labelledby="software-title">
         <p class="chapter-folio reveal">VIII</p>
-        <h2 class="chapter-title reveal" id="software-title" data-delay="1">אפליקציות AI</h2>
+        <h2 class="chapter-title reveal" id="software-title" data-delay="1">פיתוח תוכנות</h2>
         <p class="chapter-supporting reveal" data-delay="2">
             פיתוח ושיווק אפליקציות מבוססות בינה מלאכותית. אלה מוצרים שאני בונה — לא שירותי ייעוץ.
         </p>
